@@ -1,12 +1,8 @@
 package com.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Models.Doador;
-import com.Models.Receptor;
 import com.Models.Usuario;
 import com.Services.ItemService;
 import com.Services.UsuarioService;
@@ -18,10 +14,6 @@ public class Controller {
 
 	@Autowired
 	private ItemService itemService;
-
-	private List<Doador> doadores;
-
-	private List<Receptor> receptores;
 
 	public void init() {
 

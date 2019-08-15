@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "DOADOR")
 public class Doador {
-	private static final long serialVersionUID = 1L;
 
 	private String nome;
 

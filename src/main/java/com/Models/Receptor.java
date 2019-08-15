@@ -5,10 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "RECEPTOR")
 public class Receptor {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	private String nome;
 
