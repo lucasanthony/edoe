@@ -10,6 +10,8 @@
 
 #### [Especificação original](https://docs.google.com/document/d/e/2PACX-1vST2TI5lDbtMlv8rhFYJkYnrfgqzyWDv6DDvvAajz3_KK4tAs_UnAbYdI6oeMQA6jEHo5HwUAatHmd8/pub)
 
+### [Heroku](https://dashboard.heroku.com/apps/edoe)
+
 #### Time:
 * [Lucas Anthony](https://github.com/lucasanthony)
 * [Pedro Wanderley](https://github.com/pedrofwanderley)
