@@ -3,8 +3,9 @@ package com.Repositories;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.Models.Receptor;
+import com.Models.DescritorItem;
 
 @Repository
-public interface ReceptorDAO extends MongoRepository<Receptor, String> {
+public interface DescritorItemDAO extends MongoRepository<DescritorItem, String> {
+
 }

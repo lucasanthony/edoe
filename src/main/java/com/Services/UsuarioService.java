@@ -1,30 +1,41 @@
 package com.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Models.Doador;
 import com.Models.Usuario;
-import com.Repositories.DoadorDAO;
+import com.Repositories.UsuarioDAO;
 
 @Service
 public class UsuarioService {
 	@Autowired
-	private DoadorDAO DoadorDAO;
+	private UsuarioDAO usuarioDAO;
 	
+	public void insereUsuario(Usuario usuario) {
+		usuarioDAO.insert(usuario);
+	}
 	
-	public List<Doador> pesquisaTodosDoadores(){
-		return DoadorDAO.findAll();
+	public void atualizaUsuario(Usuario usuario) {
+		usuarioDAO.save(usuario);
+	}
+	
+	public List<Usuario> pesquisaTodosUsuarios(){
+		return usuarioDAO.findAll();
 	}
 
-	public Usuario pesquisaUsuarioDoadorId(String Id) {
-		return null;
+	public Usuario pesquisaUsuarioId(String Id) {
+		return usuarioDAO.findById(Id).get();
 	}
 
 	public Usuario pesquisaUsuarioNome(String nome) {
 		return null;
+	}
+	
+	public void deletaUsuario(String Id) {
+		usuarioDAO.deleteById(Id);
 	}
 
 }

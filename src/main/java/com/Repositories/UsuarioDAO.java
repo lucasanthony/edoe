@@ -3,8 +3,8 @@ package com.Repositories;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.Models.Doador;
+import com.Models.Usuario;
 
 @Repository
-public interface DoadorDAO extends MongoRepository<Doador, String> {
+public interface UsuarioDAO extends MongoRepository<Usuario, String> {
 }
