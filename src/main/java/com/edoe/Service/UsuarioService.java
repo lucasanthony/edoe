@@ -16,7 +16,7 @@ public class UsuarioService {
 	private UsuarioDAO usuarioDAO;
 	
 	public void insereUsuario(Usuario usuario) {
-		usuarioDAO.insert(usuario);
+		usuarioDAO.save(usuario);
 	}
 	
 	public void atualizaUsuario(Usuario usuario) {

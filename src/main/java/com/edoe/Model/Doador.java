@@ -12,8 +12,8 @@ public class Doador extends Usuario {
 	
 	private List<Item> itensDoacao;
 	
-	public Doador(String nome, ObjectId id, String email, String celular, ClasseUsuario classe) {
-		super(nome, id, email, celular, classe);
+	public Doador(String nome, String email, String celular, ClasseUsuario classe) {
+		super(nome, email, celular, classe);
 		// TODO Auto-generated constructor stub
 	}
 

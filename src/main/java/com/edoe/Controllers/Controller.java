@@ -5,7 +5,12 @@ import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,8 +45,8 @@ public class Controller {
 	
  	// USUARIO
  	
- 	public void adicionaDoador(String nome, ObjectId id, String email, String celular, ClasseUsuario classe) {
- 		Usuario doador = new Doador(nome, id, email, celular, classe);
+	@PostMapping
+ 	public void adicionaDoador(@RequestBody Doador  doador) {
  		usuarioService.insereUsuario(doador);
  
  	}
@@ -60,6 +65,7 @@ public class Controller {
  
  	}
  
+ 	@PutMapping
  	public void atualizarNomeUsuario(ObjectId id, String nome) {
  		usuarioService.pesquisaUsuarioId(id).setNome(nome);
  		usuarioService.atualizaUsuario(usuarioService.pesquisaUsuarioId(id));
@@ -75,16 +81,19 @@ public class Controller {
  		usuarioService.atualizaUsuario(usuarioService.pesquisaUsuarioId(id));
  	}
  
- 	public Usuario pesquisaUsuarioDoadorId(ObjectId id) {
+ 	@GetMapping("/buscaId/{id}")
+ 	public Usuario pesquisaUsuarioDoadorId(@PathVariable ObjectId id) {
  		return usuarioService.pesquisaUsuarioId(id);
  	}
  
- 	public String pesquisaUsuarioNome(String nome) {
+ 	@GetMapping("/buscaNome/{nome}")
+ 	public String pesquisaUsuarioNome(@PathVariable String nome) {
  		return usuarioService.pesquisaUsuarioNome(nome);
  	}
  	
- 	public void deletarUsuario(ObjectId Id) {
- 		usuarioService.deletaUsuario(Id);
+ 	@DeleteMapping("/{id}")
+ 	public void deletarUsuario(@PathVariable ObjectId id) {
+ 		usuarioService.deletaUsuario(id);
  	}
  	
  	// ITEM

@@ -22,7 +22,7 @@ public class Usuario {
 
 
 
-	public Usuario(String nome, ObjectId id, String email, String celular, ClasseUsuario classe) {
+	public Usuario(String nome, String email, String celular, ClasseUsuario classe) {
 		super();
 		this.nome = nome;
 		this.id = id;
