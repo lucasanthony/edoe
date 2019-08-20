@@ -1,5 +1,7 @@
 package com.Services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +21,12 @@ public class DescritorItemService {
 	
 	public boolean existeDescritor(String descricao) {
 		return descritorDao.existsById(descricao);
+	}
+	public DescritorItem findById(String descricao) {
+		return descritorDao.findById(descricao).get();
+	}
+
+	public List<DescritorItem> carregaDescritores() {
+		return descritorDao.findAll();
 	}
 }

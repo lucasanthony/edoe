@@ -1,74 +1,16 @@
 package com.Models;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "RECEPTOR")
-public class Receptor {
-
-	private String nome;
+public class Receptor extends Usuario {
 
 	private static final String STATUS = "receptor";
 
-	@Id
-	private String id;
-
-	private String email;
-
-	private String celular;
-
-	private ClasseUsuario classe;
-
-	public Receptor() {
-
-	}
-
-	public Receptor(String nome, String id, String email, String celular, ClasseUsuario classe) {
-		this.nome = nome;
-		this.id = id;
-		this.email = email;
-		this.celular = celular;
-		this.classe = classe;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-
-	public ClasseUsuario getClasse() {
-		return classe;
-	}
-
-	public void setClasse(ClasseUsuario classe) {
-		this.classe = classe;
+	public Receptor(String nome, TipoUsuario tipo, ObjectId id, String email, String celular, ClasseUsuario classe) {
+		super(nome, id, email, celular, classe);
+		// TODO Auto-generated constructor stub
 	}
 
 	public static String getStatus() {

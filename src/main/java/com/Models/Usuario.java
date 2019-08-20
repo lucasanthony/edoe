@@ -2,28 +2,28 @@ package com.Models;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "DOADOR")
 public class Usuario {
 
-	private String nome;
-
-	private TipoUsuario tipo;
+	protected String nome;
 
 	@Id
-	private String id;
+	protected ObjectId id;
 
-	private String email;
+	protected String email;
 
-	private String celular;
+	protected String celular;
 
-	private ClasseUsuario classe;
+	protected ClasseUsuario classe;
 
-	private List<Item> itensDoacao;
 
-	public Usuario(String nome, String id, String email, String celular, ClasseUsuario classe) {
+
+	public Usuario(String nome, ObjectId id, String email, String celular, ClasseUsuario classe) {
+		super();
 		this.nome = nome;
 		this.id = id;
 		this.email = email;
@@ -39,11 +39,11 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public String getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 
@@ -71,21 +71,7 @@ public class Usuario {
 		this.classe = classe;
 	}
 
-	public List<Item> getItensDoacao() {
-		return itensDoacao;
-	}
 
-	public void setItensDoacao(List<Item> itensDoacao) {
-		this.itensDoacao = itensDoacao;
-	}
-
-	public TipoUsuario getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoUsuario tipo) {
-		this.tipo = tipo;
-	}
 
 	@Override
 	public int hashCode() {
@@ -114,7 +100,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return nome + "/" + id + ", " + email + ", " + celular + ", status: " + tipo;
+		return nome + "/" + id + ", " + email + ", " + celular;
 	}
 
 }

@@ -3,6 +3,7 @@ package com.Services;
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,23 +20,32 @@ public class UsuarioService {
 	}
 	
 	public void atualizaUsuario(Usuario usuario) {
-		usuarioDAO.save(usuario);
+		Usuario usuarioToUpdate = usuarioDAO.findUsuarioby_Id(usuario.getId());
+		usuarioDAO.save(usuarioToUpdate);
 	}
 	
 	public List<Usuario> pesquisaTodosUsuarios(){
 		return usuarioDAO.findAll();
 	}
 
-	public Usuario pesquisaUsuarioId(String Id) {
-		return usuarioDAO.findById(Id).get();
+	public Usuario pesquisaUsuarioId(ObjectId id) {
+		return usuarioDAO.findUsuarioby_Id(id);
 	}
 
-	public Usuario pesquisaUsuarioNome(String nome) {
-		return null;
+	public String pesquisaUsuarioNome(String nome) {
+		List<Usuario> usuarios = this.usuarioDAO.findAll();
+		String retorno = "";
+		for (Usuario usuario : usuarios) {
+			if(usuario.getNome().equals(nome)) {
+				retorno += usuario.toString() + " | ";
+			}
+		}
+		return retorno;
 	}
 	
-	public void deletaUsuario(String Id) {
-		usuarioDAO.deleteById(Id);
+	public void deletaUsuario(ObjectId id) {
+		Usuario usuario = this.usuarioDAO.findUsuarioby_Id(id);
+		usuarioDAO.delete(usuario);
 	}
 
 }

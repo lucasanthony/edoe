@@ -4,12 +4,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 @Document(collection = "ITEM")
 public class Item {
 	@Id
-	private String Id;
+	private ObjectId Id;
 
 	private DescritorItem descritorItem;
 	
@@ -17,18 +18,18 @@ public class Item {
 	
 	private int quantidade;
 
-	public Item(String id, DescritorItem descritorItem, int quantidade) {
+	public Item(ObjectId id, DescritorItem descritorItem, int quantidade, String tags) {
 		super();
 		Id = id;
 		this.descritorItem = descritorItem;
 		this.quantidade = quantidade;
 	}
 
-	public String getId() {
+	public ObjectId getId() {
 		return Id;
 	}
 
-	public void setId(String id) {
+	public void setId(ObjectId id) {
 		Id = id;
 	}
 
