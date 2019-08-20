@@ -1,4 +1,4 @@
-package com.Models;
+package com.edoe.Model;
 
 public enum ClasseUsuario {
 	PESSOA_FISICA("pessoa fisica"), IGREJA("igreja"), ORGAO_PUBLICO_MUNICIPAL("orgao publico municipal"),

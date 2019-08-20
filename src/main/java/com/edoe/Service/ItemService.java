@@ -1,4 +1,4 @@
-package com.Services;
+package com.edoe.Service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Models.Item;
-import com.Repositories.ItemDAO;
+import com.edoe.Model.Item;
+import com.edoe.Repository.ItemDAO;
 
 @Service
 public class ItemService {
@@ -20,7 +20,7 @@ public class ItemService {
 	}
 	
 	public Item findById(ObjectId id) {
-		return itemDAO.findItemBy_id(id);
+		return itemDAO.findItemById(id);
 	}
 	
 	public List<Item> retornaItens(){
@@ -28,13 +28,13 @@ public class ItemService {
 	}
 	
 	public void atualizaQuantidadeItem(ObjectId id, int quantidade) {
-		Item item = itemDAO.findItemBy_id(id);
+		Item item = itemDAO.findItemById(id);
 		item.setQuantidade(quantidade);
 		itemDAO.save(item);
 	}
 
 	public void atualizaTagsItem(ObjectId idItem, String tags) {
-		Item item = itemDAO.findItemBy_id(idItem);
+		Item item = itemDAO.findItemById(idItem);
 		String[] array = tags.split(",");
 		for (String tag : array) {
 			item.getTags().add(tag);

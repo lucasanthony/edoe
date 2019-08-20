@@ -1,4 +1,4 @@
-package com.Models;
+package com.edoe.Model;
 
 import java.util.List;
 

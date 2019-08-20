@@ -1,4 +1,4 @@
-package com.Services;
+package com.edoe.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +7,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Models.Usuario;
-import com.Repositories.UsuarioDAO;
+import com.edoe.Model.Usuario;
+import com.edoe.Repository.UsuarioDAO;
 
 @Service
 public class UsuarioService {
@@ -20,7 +20,7 @@ public class UsuarioService {
 	}
 	
 	public void atualizaUsuario(Usuario usuario) {
-		Usuario usuarioToUpdate = usuarioDAO.findUsuarioby_Id(usuario.getId());
+		Usuario usuarioToUpdate = usuarioDAO.findUsuarioById(usuario.getId());
 		usuarioDAO.save(usuarioToUpdate);
 	}
 	
@@ -29,7 +29,7 @@ public class UsuarioService {
 	}
 
 	public Usuario pesquisaUsuarioId(ObjectId id) {
-		return usuarioDAO.findUsuarioby_Id(id);
+		return usuarioDAO.findUsuarioById(id);
 	}
 
 	public String pesquisaUsuarioNome(String nome) {
@@ -44,7 +44,7 @@ public class UsuarioService {
 	}
 	
 	public void deletaUsuario(ObjectId id) {
-		Usuario usuario = this.usuarioDAO.findUsuarioby_Id(id);
+		Usuario usuario = this.usuarioDAO.findUsuarioById(id);
 		usuarioDAO.delete(usuario);
 	}
 

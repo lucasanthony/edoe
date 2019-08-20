@@ -1,4 +1,4 @@
-package com.Models;
+package com.edoe.Model;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

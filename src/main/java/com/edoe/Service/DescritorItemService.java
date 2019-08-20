@@ -1,12 +1,12 @@
-package com.Services;
+package com.edoe.Service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Models.DescritorItem;
-import com.Repositories.DescritorItemDAO;
+import com.edoe.Model.DescritorItem;
+import com.edoe.Repository.DescritorItemDAO;
 
 @Service
 public class DescritorItemService {

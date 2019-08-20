@@ -1,14 +1,13 @@
-package com.Repositories;
+package com.edoe.Repository;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.Models.Usuario;
+import com.edoe.Model.Item;
 
 @Repository
-public interface UsuarioDAO extends MongoRepository<Usuario, ObjectId> {
+public interface ItemDAO extends MongoRepository<Item, ObjectId> {
 	
-	Usuario findUsuarioby_Id(ObjectId id);
+	Item findItemById(ObjectId id);
 }
-

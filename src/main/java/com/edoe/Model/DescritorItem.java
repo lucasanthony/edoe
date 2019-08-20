@@ -1,4 +1,4 @@
-package com.Models;
+package com.edoe.Model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
