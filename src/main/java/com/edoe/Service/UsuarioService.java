@@ -1,7 +1,6 @@
 package com.edoe.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,10 @@ public class UsuarioService {
 		usuarioDAO.save(usuario);
 	}
 	
-	public void atualizaUsuario(Usuario usuario) {
+	public Usuario atualizaUsuario(Usuario usuario) {
 		Usuario usuarioToUpdate = usuarioDAO.findUsuarioById(usuario.getId());
 		usuarioDAO.save(usuarioToUpdate);
+		return usuarioToUpdate;
 	}
 	
 	public List<Usuario> pesquisaTodosUsuarios(){
@@ -43,9 +43,10 @@ public class UsuarioService {
 		return retorno;
 	}
 	
-	public void deletaUsuario(ObjectId id) {
+	public Usuario deletaUsuario(ObjectId id) {
 		Usuario usuario = this.usuarioDAO.findUsuarioById(id);
 		usuarioDAO.delete(usuario);
+		return usuario;
 	}
 
 }
