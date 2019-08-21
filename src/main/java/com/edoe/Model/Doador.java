@@ -1,5 +1,6 @@
 package com.edoe.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Doador extends Usuario {
@@ -10,7 +11,7 @@ public class Doador extends Usuario {
 
 	public Doador(String nome, String email, String celular, ClasseUsuario classe) {
 		super(nome, email, celular, classe);
-		// TODO Auto-generated constructor stub
+		this.itensDoacao = new ArrayList<Item>();
 	}
 
 	public void cadastraItem(Item item) {

@@ -1,7 +1,5 @@
 package com.edoe.Model;
 
-import java.util.List;
-
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,7 +23,6 @@ public class Usuario {
 	public Usuario(String nome, String email, String celular, ClasseUsuario classe) {
 		super();
 		this.nome = nome;
-		this.id = id;
 		this.email = email;
 		this.celular = celular;
 		this.classe = classe;

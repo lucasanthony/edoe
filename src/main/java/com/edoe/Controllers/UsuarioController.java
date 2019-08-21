@@ -29,7 +29,6 @@ public class UsuarioController {
 	@PostMapping
  	public void adicionaDoador(@RequestBody Doador doador) {
  		usuarioService.insereUsuario(doador);
- 
  	}
 	
 	@GetMapping
