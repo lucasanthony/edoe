@@ -31,7 +31,7 @@ public class ItemController {
 		return this.itemService.findById(id);
 	}
 	
-	@GetMapping("/listatodos")
+	@GetMapping()
 	public List<Item> retornaItens() {
 		return this.itemService.retornaItens();
 	}
