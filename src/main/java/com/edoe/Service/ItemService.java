@@ -28,10 +28,6 @@ public class ItemService {
 
 	private List<DescritorItem> descritores;
 
-	public void init() {
-		carregaDescritoresItens();
-	}
-
 	public Item cadastrarItem(Item item) {
 		return itemDAO.insert(item);
 	}

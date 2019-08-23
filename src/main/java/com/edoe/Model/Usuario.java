@@ -1,19 +1,29 @@
 package com.edoe.Model;
 
 
+import java.util.Objects;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 
 @Document(collection = "DOADOR")
 public class Usuario {
 
+	@NotEmpty(message = "O nome não pode ser vazio")
 	protected String nome;
 
 	@Id
+	@NotEmpty(message = "O ID não pode ser vazio")
 	protected String id;
-
+	
+	@NotEmpty(message = "O email não pode ser vazio")
 	protected String email;
 
+	@NotEmpty(message = "O celular não pode ser vazio")
 	protected String celular;
 
 	protected ClasseUsuario classe;
@@ -22,11 +32,12 @@ public class Usuario {
 
 	public Usuario(String id, String nome, String email, String celular, ClasseUsuario classe) {
 		super();
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.celular = celular;
-		this.classe = classe;
+		
+		this.id = Objects.requireNonNull(id, "id must not be null");
+		this.nome = Objects.requireNonNull(nome, "nome must not be null");
+		this.email = Objects.requireNonNull(email, "email must not be null");
+		this.celular = Objects.requireNonNull(celular, "celular must not be null");
+		this.classe = Objects.requireNonNull(classe, "classe must not be null");
 	}
 
 	public String getNome() {

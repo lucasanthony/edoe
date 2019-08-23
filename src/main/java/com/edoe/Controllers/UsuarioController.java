@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edoe.Model.ClasseUsuario;
 import com.edoe.Model.Receptor;
 import com.edoe.Model.Usuario;
 import com.edoe.Service.UsuarioService;
@@ -32,18 +33,12 @@ public class UsuarioController {
 
 	@PostMapping("/adicionadoador")
 	public Usuario adicionaDoador(@RequestBody Usuario doador) throws Exception {
-		return usuarioService.adicionaDoador(doador.getId(), doador.getNome(), doador.getEmail(), doador.getCelular(),
-				doador.getClasse().getClasseUsuario());
+		return usuarioService.adicionaDoador(doador);
 	}
 
 	@GetMapping
 	public List<Usuario> pesquisaTodosusuarios() {
 		return this.usuarioService.pesquisaTodosUsuarios();
-	}
-
-	public void lerReceptores(String caminho) {
-		// Aqui vão ser lidos os receptores, assinatura e parametro conforme
-		// está no teste
 	}
 
 	@PostMapping("/insereReceptor")
@@ -57,9 +52,9 @@ public class UsuarioController {
 			if (dados.length != 5) {
 				throw new IOException("não chegpu aqui");
 			}
-			System.out.println(dados[1] + " | " + dados[2] + " | " + dados[3] + " | " + dados[4]);
+			System.out.println(ClasseUsuario.valueOf(dados[4]));
 			// ACHAR UMA MANEIRA DE DEFINIR UMA CLASSE ATRAVES DA STRING RECEBIDA
-			Receptor receptor = new Receptor(dados[1], dados[2], dados[3], null, null);
+			Receptor receptor = new Receptor(dados[0], dados[1], dados[2], dados[3], ClasseUsuario.valueOf(dados[4]));
 			usuarioService.insereUsuario(receptor);
 		}
 		sc.close();
@@ -70,8 +65,8 @@ public class UsuarioController {
 
 	}
 
-	@PutMapping("/atualiza")
-	public Usuario atualizarNomeUsuario(@RequestParam String id, @RequestParam String nome, @RequestParam String email,
+	@PutMapping("/atualiza/{id}")
+	public Usuario atualizarNomeUsuario(@PathVariable String id, @RequestParam String nome, @RequestParam String email,
 			@RequestParam String celular) throws Exception {
 		return usuarioService.atualizaUsuario(id, nome, email, celular);
 	}
