@@ -3,7 +3,7 @@ package com.edoe;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import easyaccept.EasyAccept;
+//import easyaccept.EasyAccept;
 
 
 @SpringBootApplication
