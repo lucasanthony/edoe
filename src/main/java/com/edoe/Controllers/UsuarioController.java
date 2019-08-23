@@ -27,10 +27,10 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	private String path = "C:\\novosReceptores.csv";
 
-	@PostMapping
-	public void adicionaDoador(@RequestParam String id, @RequestParam String nome, @RequestParam String email,
+	@PostMapping("/adicionadoador")
+	public Usuario adicionaDoador(@RequestParam String id, @RequestParam String nome, @RequestParam String email,
 			@RequestParam String celular, @RequestParam String classe) {
-		usuarioService.adicionaDoador(id, nome, email, celular, classe);
+		return usuarioService.adicionaDoador(id, nome, email, celular, classe);
 	}
 
 	@GetMapping
