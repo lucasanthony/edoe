@@ -25,11 +25,19 @@ public class UsuarioService {
 		String flag = validaParametros(id, nome, email, celular, classe);
 		if (!flag.equals("ok"))
 			throw new Exception(flag);
+		
+		if(verificaSeJaExiste(id))
+			throw new Exception("Usuario ja existente: " + id);
+		
 		ClasseUsuario classeUser = ClasseUsuario.valueOf(classe);
 		Usuario doador = new Doador(id, nome, email, celular, classeUser);
 		usuarioDAO.save(doador);
 		return doador;
 
+	}
+	
+	private boolean verificaSeJaExiste(String id) {
+		return usuarioDAO.existsById(id);
 	}
 	
 	// FUNCIONANDO NO EASY ACCEPT
