@@ -66,9 +66,8 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/atualiza/{id}")
-	public Usuario atualizarNomeUsuario(@PathVariable String id, @RequestParam String nome, @RequestParam String email,
-			@RequestParam String celular) throws Exception {
-		return usuarioService.atualizaUsuario(id, nome, email, celular);
+	public Usuario atualizarUsuario(@PathVariable String id, @RequestBody Usuario usuario) throws Exception {
+		return usuarioService.atualizaUsuario(id, usuario);
 	}
 
 	@GetMapping("/buscaid/{id}")

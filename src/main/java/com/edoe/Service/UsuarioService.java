@@ -45,24 +45,13 @@ public class UsuarioService {
 		return usuarioDAO.existsById(id);
 	}
 
-	public Usuario atualizaUsuario(String id, String nome, String email, String celular) throws Exception {
+	public Usuario atualizaUsuario(String id, Usuario usuario) throws Exception {
 		if (id == null || id.equals(""))
 			throw new Exception("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		
 		Usuario usuarioToUpdate = usuarioDAO.findUsuarioById(id);
-		/*
-		if (usuarioToUpdate == null)
-			throw new Exception("Usuario nao encontrado: " + id);
-		
-		if (nome != null && !nome.equals(""))
-			usuarioToUpdate.setNome(nome);
-		
-		if (email != null && !email.equals(""))
-			usuarioToUpdate.setEmail(email);
-		
-		if (celular != null && !celular.equals(""))
-			usuarioToUpdate.setCelular(celular);
-		*/
+
+		usuarioToUpdate = usuario;
 		usuarioDAO.save(usuarioToUpdate);
 		return usuarioToUpdate;
 	}
