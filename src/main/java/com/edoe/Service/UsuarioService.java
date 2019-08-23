@@ -40,7 +40,7 @@ public class UsuarioService {
 		return usuarioDAO.existsById(id);
 	}
 	
-	// FUNCIONANDO NO EASY ACCEPT
+	// OK, FALTA CHECAR CLASSE INVALIDA
 	private String validaParametros(String id, String nome, String email, String celular, String classe) throws Exception {
 		String msg = "Entrada invalida:";
 		if (id == null || id.equals(""))
@@ -60,24 +60,45 @@ public class UsuarioService {
 			
 	}
 
-	public Usuario atualizaUsuario(Usuario usuario) {
-		Usuario usuarioToUpdate = usuarioDAO.findUsuarioById(usuario.getId());
+	
+	public Usuario atualizaUsuario(String id, String nome, String email, String celular) throws Exception {
+		if (id == null || id.equals(""))
+			throw new Exception("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		
+		Usuario usuarioToUpdate = usuarioDAO.findUsuarioById(id);
+		
+		if (usuarioToUpdate == null)
+			throw new Exception("Usuario nao encontrado: " + id);
+		
+		if (nome != null)
+			usuarioToUpdate.setNome(nome);
+		
+		if (email != null)
+			usuarioToUpdate.setNome(email);
+		
+		if (celular != null)
+			usuarioToUpdate.setNome(celular);
+		
 		usuarioDAO.save(usuarioToUpdate);
 		return usuarioToUpdate;
 	}
-
+	
+	//OK
 	public List<Usuario> pesquisaTodosUsuarios() {
 		return usuarioDAO.findAll();
 	}
 
+	// OK
 	public void deletarTodosUsuarios() {
 		usuarioDAO.deleteAll();
 	}
 
+	// OK
 	public Usuario pesquisaUsuarioId(String id) {
 		return usuarioDAO.findUsuarioById(id);
 	}
 
+	// OK
 	public String pesquisaUsuarioNome(String nome) {
 		List<Usuario> usuarios = this.usuarioDAO.findAll();
 		String retorno = "";
@@ -89,8 +110,16 @@ public class UsuarioService {
 		return retorno;
 	}
 
-	public Usuario deletaUsuario(String id) {
+	// OK
+	public Usuario removeUsuario(String id) throws Exception {
+		if (id == null || id.equals(""))
+			throw new Exception("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		
 		Usuario usuario = this.usuarioDAO.findUsuarioById(id);
+		
+		if (usuario == null)
+			throw new Exception("Usuario nao encontrado: " + id);
+		
 		usuarioDAO.delete(usuario);
 		return usuario;
 	}

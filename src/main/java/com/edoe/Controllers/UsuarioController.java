@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edoe.Model.Receptor;
@@ -31,7 +32,8 @@ public class UsuarioController {
 
 	@PostMapping("/adicionadoador")
 	public Usuario adicionaDoador(@RequestBody Usuario doador) throws Exception {
-		return usuarioService.adicionaDoador(doador.getId(), doador.getNome(), doador.getEmail(), doador.getCelular(), doador.getClasse().getClasseUsuario());
+		return usuarioService.adicionaDoador(doador.getId(), doador.getNome(), doador.getEmail(), doador.getCelular(),
+				doador.getClasse().getClasseUsuario());
 	}
 
 	@GetMapping
@@ -68,23 +70,10 @@ public class UsuarioController {
 
 	}
 
-	@PutMapping("/atualizanome")
-	public Usuario atualizarNomeUsuario(String id, String nome) {
-		usuarioService.pesquisaUsuarioId(id).setNome(nome);
-		return usuarioService.atualizaUsuario(usuarioService.pesquisaUsuarioId(id));
-	}
-
-	@PutMapping("/atualizaemail")
-	public Usuario atualizarEmailUsuario(String id, String email) {
-		usuarioService.pesquisaUsuarioId(id).setEmail(email);
-		return usuarioService.atualizaUsuario(usuarioService.pesquisaUsuarioId(id));
-	}
-
-	@PutMapping("/atualizacelular")
-	public Usuario atualizarCelularUsuario(String id, String celular) {
-		usuarioService.pesquisaUsuarioId(id).setCelular(celular);
-		;
-		return usuarioService.atualizaUsuario(usuarioService.pesquisaUsuarioId(id));
+	@PutMapping("/atualiza")
+	public Usuario atualizarNomeUsuario(@RequestParam String id, @RequestParam String nome, @RequestParam String email,
+			@RequestParam String celular) throws Exception {
+		return usuarioService.atualizaUsuario(id, nome, email, celular);
 	}
 
 	@GetMapping("/buscaid/{id}")
@@ -97,9 +86,9 @@ public class UsuarioController {
 		return this.usuarioService.pesquisaUsuarioNome(nome);
 	}
 
-	@DeleteMapping("/deleta/{id}")
-	public Usuario deletarUsuario(@PathVariable String id) {
-		return this.usuarioService.deletaUsuario(id);
+	@DeleteMapping("/remove/{id}")
+	public Usuario removeUsuario(@PathVariable String id) throws Exception {
+		return this.usuarioService.removeUsuario(id);
 	}
 
 	@DeleteMapping
