@@ -70,13 +70,13 @@ public class UsuarioService {
 		if (usuarioToUpdate == null)
 			throw new Exception("Usuario nao encontrado: " + id);
 		
-		if (nome != null)
+		if (nome != null || !nome.equals(""))
 			usuarioToUpdate.setNome(nome);
 		
-		if (email != null)
+		if (email != null || !email.equals(""))
 			usuarioToUpdate.setEmail(email);
 		
-		if (celular != null)
+		if (celular != null|| !celular.equals(""))
 			usuarioToUpdate.setCelular(celular);
 		
 		usuarioDAO.save(usuarioToUpdate);
