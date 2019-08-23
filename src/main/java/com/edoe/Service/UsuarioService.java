@@ -73,7 +73,7 @@ public class UsuarioService {
 		if (nome != null && !nome.equals(""))
 			usuarioToUpdate.setNome(nome);
 		
-		if (email != null && email.equals(""))
+		if (email != null && !email.equals(""))
 			usuarioToUpdate.setEmail(email);
 		
 		if (celular != null && !celular.equals(""))
