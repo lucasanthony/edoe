@@ -4,8 +4,8 @@ public class Receptor extends Usuario {
 
 	private static final String STATUS = "receptor";
 
-	public Receptor(String dados, String nome, String email, String celular, ClasseUsuario classe) {
-		super(dados, nome, email, celular, classe);
+	public Receptor(String id, String nome, String email, String celular, ClasseUsuario classe) {
+		super(id, nome, email, celular, classe);
 	}
 
 	public static String getStatus() {

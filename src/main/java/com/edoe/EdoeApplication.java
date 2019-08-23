@@ -11,7 +11,7 @@ public class EdoeApplication {
 
 	public static void main(String[] args) {
 		// DESCOMENTA AQUI PRA RODAR OS TESTES DE ACEITAÇÃO
-		//args = new String[] { "com.edoe.Controllers.UsuarioController", "Acceptance_test/use_case_1.txt"};
+		//args = new String[] { "com.edoe.Service.UsuarioService", "Acceptance_test/use_case_1.txt"};
 		//EasyAccept.main(args);
 
 		SpringApplication.run(EdoeApplication.class, args);

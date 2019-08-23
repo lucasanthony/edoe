@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edoe.Model.Receptor;
@@ -28,9 +28,8 @@ public class UsuarioController {
 	private String path = "C:\\novosReceptores.csv";
 
 	@PostMapping("/adicionadoador")
-	public Usuario adicionaDoador(@RequestParam String id, @RequestParam String nome, @RequestParam String email,
-			@RequestParam String celular, @RequestParam String classe) {
-		return usuarioService.adicionaDoador(id, nome, email, celular, classe);
+	public Usuario adicionaDoador(@RequestBody Usuario doador) throws Exception {
+		return usuarioService.adicionaDoador(doador.getId(), doador.getNome(), doador.getEmail(), doador.getCelular(), doador.getClasse().getClasseUsuario());
 	}
 
 	@GetMapping
