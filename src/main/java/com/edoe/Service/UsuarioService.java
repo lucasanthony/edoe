@@ -28,6 +28,9 @@ public class UsuarioService {
 		return usuarioDAO.findAll();
 	}
 
+	public void deletarTodosUsuarios() {
+		usuarioDAO.deleteAll();
+	}
 	public Usuario pesquisaUsuarioId(ObjectId id) {
 		return usuarioDAO.findUsuarioById(id);
 	}

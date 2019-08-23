@@ -4,7 +4,7 @@ public class Receptor extends Usuario {
 
 	private static final String STATUS = "receptor";
 
-	public Receptor(String nome, TipoUsuario tipo, String email, String celular, ClasseUsuario classe) {
+	public Receptor(String nome, String email, String celular, ClasseUsuario classe) {
 		super(nome, email, celular, classe);
 	}
 

@@ -1,9 +1,9 @@
 package com.edoe.Model;
 
 public enum ClasseUsuario {
-	PESSOA_FISICA("pessoa fisica"), IGREJA("igreja"), ORGAO_PUBLICO_MUNICIPAL("orgao publico municipal"),
-	ORGAO_PUBLICO_ESTADUAL("orgao publico estadual"), ORGAO_PUBLICO_FEDERAL("orgao publico federal"), ONG("ong"),
-	ASSOCIACAO("associacao"), SOCIEDADE("sociedade");
+	PESSOA_FISICA("PESSOA_FISICA"), IGREJA("IGREJA"), ORGAO_PUBLICO_MUNICIPAL("ORGAO_PUBLICO_MUNICIPAL"),
+	ORGAO_PUBLICO_ESTADUAL("ORGAO_PUBLICO_ESTADUAL"), ORGAO_PUBLICO_FEDERAL("ORGAO_PUBLICO_FEDERAL"), ONG("ONG"),
+	ASSOCIACAO("ASSOCIACAO"), SOCIEDADE("SOCIEDADE");
 
 	private String classeUsuario;
 
