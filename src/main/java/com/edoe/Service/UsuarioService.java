@@ -74,10 +74,10 @@ public class UsuarioService {
 			usuarioToUpdate.setNome(nome);
 		
 		if (email != null)
-			usuarioToUpdate.setNome(email);
+			usuarioToUpdate.setEmail(email);
 		
 		if (celular != null)
-			usuarioToUpdate.setNome(celular);
+			usuarioToUpdate.setCelular(celular);
 		
 		usuarioDAO.save(usuarioToUpdate);
 		return usuarioToUpdate;
