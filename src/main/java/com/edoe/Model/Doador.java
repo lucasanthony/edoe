@@ -9,8 +9,8 @@ public class Doador extends Usuario {
 
 	private List<Item> itensDoacao;
 
-	public Doador(String nome, String email, String celular, ClasseUsuario classe) {
-		super(nome, email, celular, classe);
+	public Doador(String id, String nome, String email, String celular, ClasseUsuario classe) {
+		super(id, nome, email, celular, classe);
 		this.itensDoacao = new ArrayList<Item>();
 	}
 

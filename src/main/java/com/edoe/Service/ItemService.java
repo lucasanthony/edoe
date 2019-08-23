@@ -60,7 +60,7 @@ public class ItemService {
 
 	}
 
-	public void cadastraItemDoacao(ObjectId idDoador, ObjectId idItem, String descricao, int quantidade, String tags) {
+	public void cadastraItemDoacao(String idDoador, ObjectId idItem, String descricao, int quantidade, String tags) {
 
 		Doador doador = (Doador) usuarioService.pesquisaUsuarioId(idDoador);
 		if (!checaItemDoacao(descricao)) {
@@ -72,7 +72,7 @@ public class ItemService {
 		doador.cadastraItem(item);
 	}
 
-	public void removerItemDoacao(ObjectId idDoador, ObjectId idItem) {
+	public void removerItemDoacao(String idDoador, ObjectId idItem) {
 		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
 		if (doador.getItensDoacao().contains(item)) {
@@ -80,7 +80,7 @@ public class ItemService {
 		}
 	}
 
-	public void atualizarQuantidadeItemDoacao(ObjectId idDoador, ObjectId idItem, int quantidade) {
+	public void atualizarQuantidadeItemDoacao(String idDoador, ObjectId idItem, int quantidade) {
 		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
 		if (doador.getItensDoacao().contains(item)) {
@@ -88,7 +88,7 @@ public class ItemService {
 		}
 	}
 
-	public void atualizarTagsItemDoacao(ObjectId idDoador, ObjectId idItem, String tags) {
+	public void atualizarTagsItemDoacao(String idDoador, ObjectId idItem, String tags) {
 		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
 		if (doador.getItensDoacao().contains(item)) {
