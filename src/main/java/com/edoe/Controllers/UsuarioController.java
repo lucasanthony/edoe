@@ -77,7 +77,6 @@ public class UsuarioController {
 	@PutMapping("/atualizaemail")
 	public Usuario atualizarEmailUsuario(String id, String email) {
 		usuarioService.pesquisaUsuarioId(id).setEmail(email);
-		;
 		return usuarioService.atualizaUsuario(usuarioService.pesquisaUsuarioId(id));
 	}
 
