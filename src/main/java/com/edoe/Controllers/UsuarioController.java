@@ -54,11 +54,9 @@ public class UsuarioController {
  				throw new IOException("não chegpu aqui");
  			}
  			System.out.println(dados[1] + " | " + dados[2] + " | " + dados[3] + " | " + dados[4]);
+ 			//ACHAR UMA MANEIRA DE DEFINIR UMA CLASSE ATRAVES DA STRING RECEBIDA
  			Receptor receptor = new Receptor(dados[1], dados[2], dados[3], null);
- 			//break;
- 			//System.out.println(receptor.getNome());
  			usuarioService.insereUsuario(receptor);
- 			//break;
  		}
  		sc.close();	
  
