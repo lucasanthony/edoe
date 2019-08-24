@@ -55,6 +55,9 @@ public class ItemService {
 		itemDAO.save(item);
 
 	}
+	
+	public void atualizaItem(String idUsuario, Item item) {
+	}
 
 	public void cadastraItemDoacao(String idDoador, ObjectId idItem, String descricao, int quantidade, String tags) {
 

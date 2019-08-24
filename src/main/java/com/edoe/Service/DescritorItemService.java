@@ -16,7 +16,7 @@ public class DescritorItemService {
 	
 	
 	public void insereDescritor(DescritorItem descritor) {
-		descritorDao.insert(descritor);
+		descritorDao.save(descritor);
 	}
 	
 	public boolean existeDescritor(String descricao) {
