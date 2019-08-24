@@ -54,5 +54,14 @@ public class ItemController {
 	public void atualizarItem(String idUsuario, Item item) {
 		itemService.atualizaItem(idUsuario, item);
 	}
+	
+	@GetMapping("/descritoresQuant")
+	public String retornaItemDesc() {
+		String retorno = "";
+		for (Item item : itemService.retornaItens()) {
+			retorno += item.toStringDescQuant();  
+		}
+		return retorno;
+	}
 
 }

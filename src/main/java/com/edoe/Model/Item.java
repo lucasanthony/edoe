@@ -58,7 +58,7 @@ public class Item {
 	}
 
 	public String toStringDescQuant() {
-		return quantidade + " - " + descritorItem.getDescricao();
+		return quantidade + " - " + descritorItem.getDescricao() + " | ";
 	}
 
 	
