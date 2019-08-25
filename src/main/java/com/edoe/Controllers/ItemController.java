@@ -1,5 +1,6 @@
 package com.edoe.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.edoe.Model.DescritorItem;
 import com.edoe.Model.Item;
+import com.edoe.Model.TipoUsuario;
 import com.edoe.Service.DescritorItemService;
 import com.edoe.Service.ItemService;
 
@@ -36,12 +38,36 @@ public class ItemController {
 	@PostMapping("/cadastraItemDoador/{usuarioId}")
 	public void cadastrarItemDoador(@PathVariable String usuarioId, @RequestBody Item item) {
 		try {
+			item.setTipoUsuario(TipoUsuario.DOADOR);
 			itemService.cadastrarItem(item);
 			itemService.cadastraItemDoador(usuarioId, item);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@PostMapping("/cadastraItemReceptor/{usuarioId}")
+	public void cadastrarItemReceptor(@PathVariable String usuarioId, @RequestBody Item item) {
+		try {
+			item.setTipoUsuario(TipoUsuario.RECEPTOR);
+			itemService.cadastrarItem(item);
+			itemService.cadastraItemReceptor(usuarioId, item);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@GetMapping("/itensNecessarios")
+	public List<Item> getItensNecessarios(){
+		List<Item> itensNecessarios = new ArrayList<>();
+		for (Item itemNec : itemService.retornaItens()) {
+			if(itemNec.getTipoUsuario() == TipoUsuario.RECEPTOR) {
+				itensNecessarios.add(itemNec);
+			}
+		}
+		return itensNecessarios;
 	}
 
 	@GetMapping("/encontrar/{id}")
@@ -60,9 +86,20 @@ public class ItemController {
 	}
 
 	@PutMapping("atualizarItemDoador/{idUsuario}")
-	public void atualizarItem(@PathVariable String idUsuario, @RequestBody Item item) throws Exception {
-		itemService.atualizaItem(idUsuario, item);
+	public void atualizarItemDoador(@PathVariable String idUsuario, @RequestBody Item item) throws Exception {
+		itemService.atualizaItemDoador(idUsuario, item);
 	}
+	
+	@PutMapping("atualizarItemReceptor/{idUsuario}")
+	public void atualizarItemReceptor(@PathVariable String idUsuario, @RequestBody Item item) throws Exception {
+		itemService.atualizaItemReceptor(idUsuario, item);
+	}
+	
+	@DeleteMapping("deletarItemReceptor/{id}/{Id}")
+	public void deletarItemReceptor(@PathVariable String id, @PathVariable ObjectId Id) throws Exception {
+		itemService.deletarItemReceptor(id, Id);
+	}
+	
 	
 	@DeleteMapping()
 	public void deletarTodosItens() {

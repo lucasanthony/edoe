@@ -1,15 +1,30 @@
 package com.edoe.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Receptor extends Usuario {
 
 	private static final String STATUS = "receptor";
+	
+	private List<Item> itensNecessarios;
 
 	public Receptor(String id, String nome, String email, String celular, ClasseUsuario classe) {
 		super(id, nome, email, celular, classe);
+		this.itensNecessarios = new ArrayList<>();
 	}
 
 	public static String getStatus() {
 		return STATUS;
+	}
+
+	
+	public List<Item> getItensNecessarios() {
+		return itensNecessarios;
+	}
+
+	public void setItensNecessarios(List<Item> itensNecessarios) {
+		this.itensNecessarios = itensNecessarios;
 	}
 
 	@Override

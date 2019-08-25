@@ -18,6 +18,8 @@ public class Item {
 	private String tags;
 	
 	private int quantidade;
+	
+	private TipoUsuario tipoUsuario;
 
 	public Item(String descricao, int quantidade, String tags) {
 		super();
@@ -59,7 +61,15 @@ public class Item {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	
+		
+
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 
 	@Override
 	public int hashCode() {

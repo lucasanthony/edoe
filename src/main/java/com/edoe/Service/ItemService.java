@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.edoe.Model.DescritorItem;
 import com.edoe.Model.Doador;
 import com.edoe.Model.Item;
+import com.edoe.Model.Receptor;
 import com.edoe.Model.Usuario;
 import com.edoe.Repository.ItemDAO;
 
@@ -63,10 +64,8 @@ public class ItemService {
 
 	}
 */
-	public void atualizaItem(String idUsuario, Item item) throws Exception {
+	public void atualizaItemDoador(String idUsuario, Item item) throws Exception {
 		Doador doador = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
-		System.out.println(item.getId());
-		System.out.println(doador.getItensDoacao().contains(item));
 		if(doador.getItensDoacao().contains(item)) {
 			int index = doador.getItensDoacao().indexOf(item);
 			doador.getItensDoacao().get(index).setQuantidade(item.getQuantidade());
@@ -162,5 +161,34 @@ public class ItemService {
 
 	public void deletarTodos() {
 		itemDAO.deleteAll();
+	}
+
+	public void cadastraItemReceptor(String usuarioId, Item item) throws Exception {
+		Receptor usuario = (Receptor) usuarioService.pesquisaUsuarioId(usuarioId);
+		cadastraDescritor(item.getDescricao());
+		usuario.getItensNecessarios().add(item);
+		usuarioService.atualizaUsuario(usuarioId, usuario);
+		
+	}
+
+	public void atualizaItemReceptor(String idUsuario, Item item) throws Exception {
+		Receptor receptor = (Receptor) usuarioService.pesquisaUsuarioId(idUsuario);
+		if(receptor.getItensNecessarios().contains(item)) {
+			int index = receptor.getItensNecessarios().indexOf(item);
+			receptor.getItensNecessarios().get(index).setQuantidade(item.getQuantidade());
+			receptor.getItensNecessarios().get(index).setTags(item.getTags());
+		}
+		usuarioService.atualizaUsuario(idUsuario, receptor);
+		
+	}
+
+	public void deletarItemReceptor(String idUsuario, ObjectId idItem) throws Exception {
+		Receptor usuario = (Receptor) usuarioService.pesquisaUsuarioId(idUsuario);
+		Item item = itemService.findById(idItem);
+		if(usuario.getItensNecessarios().contains(item)) {
+			usuario.getItensNecessarios().remove(item);	
+		}
+		usuarioService.atualizaUsuario(idUsuario, usuario);
+		
 	}
 }
