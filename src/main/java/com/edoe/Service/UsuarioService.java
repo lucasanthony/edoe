@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.edoe.Model.ClasseUsuario;
 import com.edoe.Model.Doador;
+import com.edoe.Model.Item;
 import com.edoe.Model.Usuario;
 import com.edoe.Repository.UsuarioDAO;
 
@@ -95,6 +96,12 @@ public class UsuarioService {
 		
 		usuarioDAO.delete(usuario);
 		return usuario;
+	}
+
+	public List<Item> pesquisaitensDoacao(String id) {
+		Doador doador = (Doador) usuarioDAO.findUsuarioById(id);
+		return doador.getItensDoacao();
+		
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.edoe.Model.DescritorItem;
 import com.edoe.Model.Doador;
 import com.edoe.Model.Item;
+import com.edoe.Model.Usuario;
 import com.edoe.Repository.ItemDAO;
 
 @Service
@@ -39,14 +40,20 @@ public class ItemService {
 	public List<Item> retornaItens() {
 		return this.itemDAO.findAll();
 	}
-
+	public void cadastraItemDoador(String idUsuario, Item item) throws Exception {
+		Doador usuario = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
+		cadastraDescritor(item.getDescricao());
+		usuario.getItensDoacao().add(item);
+		usuarioService.atualizaUsuario(idUsuario, usuario);
+	}
+	
 	public void atualizaQuantidadeItem(ObjectId id, int quantidade) {
 		Item item = itemDAO.findItemById(id);
 		item.setQuantidade(quantidade);
 		itemDAO.save(item);
 	}
 
-	public void atualizaTagsItem(ObjectId idItem, String tags) {
+/*	public void atualizaTagsItem(ObjectId idItem, String tags) {
 		Item item = itemDAO.findItemById(idItem);
 		String[] array = tags.split(",");
 		for (String tag : array) {
@@ -55,22 +62,32 @@ public class ItemService {
 		itemDAO.save(item);
 
 	}
-	
-	public void atualizaItem(String idUsuario, Item item) {
+*/
+	public void atualizaItem(String idUsuario, Item item) throws Exception {
+		Doador doador = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
+		System.out.println(item.getId());
+		System.out.println(doador.getItensDoacao().contains(item));
+		if(doador.getItensDoacao().contains(item)) {
+			int index = doador.getItensDoacao().indexOf(item);
+			doador.getItensDoacao().get(index).setQuantidade(item.getQuantidade());
+			doador.getItensDoacao().get(index).setTags(item.getTags());
+		}
+		usuarioService.atualizaUsuario(idUsuario, doador);
 	}
 
+	/*
 	public void cadastraItemDoacao(String idDoador, ObjectId idItem, String descricao, int quantidade, String tags) {
 
 		Doador doador = (Doador) usuarioService.pesquisaUsuarioId(idDoador);
 		if (!checaItemDoacao(descricao)) {
 			cadastraDescritor(descricao);
-			Item item = new Item(idItem, findDescritor(descricao), quantidade, tags);
+			Item item = new Item(descricao, quantidade, tags);
 			doador.cadastraItem(item);
 		}
-		Item item = new Item(idItem, findDescritor(descricao), quantidade, tags);
+		Item item = new Item(descricao, quantidade, tags);
 		doador.cadastraItem(item);
 	}
-
+*/
 	public void removerItemDoacao(String idDoador, ObjectId idItem) {
 		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
@@ -87,13 +104,13 @@ public class ItemService {
 		}
 	}
 
-	public void atualizarTagsItemDoacao(String idDoador, ObjectId idItem, String tags) {
+	/*public void atualizarTagsItemDoacao(String idDoador, ObjectId idItem, String tags) {
 		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
 		if (doador.getItensDoacao().contains(item)) {
 			this.itemService.atualizaTagsItem(idItem, tags);
 		}
-	}
+	}*/
 
 	public DescritorItem findDescritor(String descricao) {
 		return descritorService.findById(descricao);
@@ -103,7 +120,10 @@ public class ItemService {
 		return descritorService.existeDescritor(descricao);
 	}
 
-	public void cadastraDescritor(String descricao) {
+	public void cadastraDescritor(String descricao) throws Exception {
+		if(descritorService.existeDescritor(descricao)) {
+			throw new Exception("Descritor já existe");
+		}
 		DescritorItem descritor = new DescritorItem(descricao);
 		descritorService.insereDescritor(descritor);
 	}
@@ -129,5 +149,18 @@ public class ItemService {
 	private void carregaDescritoresItens() {
 		descritores = descritorService.carregaDescritores();
 
+	}
+
+	public void deletarItemDoador(String idUsuario, ObjectId idItem) throws Exception {
+		Doador usuario = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
+		Item item = itemService.findById(idItem);
+		if(usuario.getItensDoacao().contains(item)) {
+			usuario.getItensDoacao().remove(item);	
+		}
+		usuarioService.atualizaUsuario(idUsuario, usuario);
+	}
+
+	public void deletarTodos() {
+		itemDAO.deleteAll();
 	}
 }

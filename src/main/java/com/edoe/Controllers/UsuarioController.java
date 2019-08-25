@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edoe.Model.ClasseUsuario;
+import com.edoe.Model.Doador;
+import com.edoe.Model.Item;
 import com.edoe.Model.Receptor;
 import com.edoe.Model.Usuario;
 import com.edoe.Service.UsuarioService;
@@ -31,14 +33,19 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	private String path = "C:\\novosReceptores.csv";
 
-	@PostMapping("/adicionadoador")
-	public Usuario adicionaDoador(@RequestBody Usuario doador) throws Exception {
+	@PostMapping("/adicionaDoador")
+	public Usuario adicionaDoador(@RequestBody Doador doador) throws Exception {
 		return usuarioService.adicionaDoador(doador);
 	}
 
 	@GetMapping
 	public List<Usuario> pesquisaTodosusuarios() {
 		return this.usuarioService.pesquisaTodosUsuarios();
+	}
+	
+	@GetMapping("itensDoacao/{id}")
+	public List<Item> pesquisaItemsDoacao(@PathVariable String id) {
+		return this.usuarioService.pesquisaitensDoacao(id);
 	}
 
 	@PostMapping("/insereReceptor")

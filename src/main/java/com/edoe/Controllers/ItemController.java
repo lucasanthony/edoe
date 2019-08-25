@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,19 +28,20 @@ public class ItemController {
 	@Autowired
 	private DescritorItemService descritorService;
 
-	@PostMapping("/cadastraItem")
+	/*@PostMapping("/cadastraItem")
 	public Item cadastrarItem(@RequestBody Item item) {
 		return itemService.cadastrarItem(item);
-	}
+	}*/
 
-	@PostMapping("/cadastraDescritor")
-	public void cadastrarDescritor(@RequestBody DescritorItem descritor) {
-		descritorService.insereDescritor(descritor);
-	}
-
-	@GetMapping("/descritores")
-	public List<DescritorItem> getDescritores() {
-		return descritorService.carregaDescritores();
+	@PostMapping("/cadastraItemDoador/{usuarioId}")
+	public void cadastrarItemDoador(@PathVariable String usuarioId, @RequestBody Item item) {
+		try {
+			itemService.cadastrarItem(item);
+			itemService.cadastraItemDoador(usuarioId, item);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@GetMapping("/encontrar/{id}")
@@ -50,9 +53,27 @@ public class ItemController {
 	public List<Item> retornaItens() {
 		return this.itemService.retornaItens();
 	}
+	
+	@DeleteMapping("deletarItemDoador/{id}/{Id}")
+	public void deletarItemDoador(@PathVariable String id, @PathVariable ObjectId Id) throws Exception {
+		itemService.deletarItemDoador(id, Id);
+	}
 
-	public void atualizarItem(String idUsuario, Item item) {
+	@PutMapping("atualizarItemDoador/{idUsuario}")
+	public void atualizarItem(@PathVariable String idUsuario, @RequestBody Item item) throws Exception {
 		itemService.atualizaItem(idUsuario, item);
+	}
+	
+	@DeleteMapping()
+	public void deletarTodosItens() {
+		itemService.deletarTodos();
+	}
+	
+	//DESCRITORES
+	
+	@PostMapping("/cadastraDescritor")
+	public void cadastrarDescritor(@RequestBody DescritorItem descritor) {
+		descritorService.insereDescritor(descritor);
 	}
 	
 	@GetMapping("/descritoresQuant")
@@ -63,5 +84,12 @@ public class ItemController {
 		}
 		return retorno;
 	}
+	
+
+	@GetMapping("/descritores")
+	public List<DescritorItem> getDescritores() {
+		return descritorService.carregaDescritores();
+	}
+
 
 }
