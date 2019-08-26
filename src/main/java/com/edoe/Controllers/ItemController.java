@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edoe.Model.DescritorItem;
+import com.edoe.Model.Doador;
 import com.edoe.Model.Item;
 import com.edoe.Model.TipoUsuario;
+import com.edoe.Model.Usuario;
 import com.edoe.Service.DescritorItemService;
 import com.edoe.Service.ItemService;
+import com.edoe.Service.UsuarioService;
 
 @RestController
 @RequestMapping({ "/item" })
@@ -26,6 +29,9 @@ public class ItemController {
 
 	@Autowired
 	private ItemService itemService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@Autowired
 	private DescritorItemService descritorService;
@@ -104,6 +110,24 @@ public class ItemController {
 	@DeleteMapping()
 	public void deletarTodosItens() {
 		itemService.deletarTodos();
+	}
+	
+	public List<Item> matching(String idReceptor, String descricao){
+		List<Item> itens = new ArrayList<>();
+		List<Item> matches = new ArrayList<>();
+		for (Usuario usuario : usuarioService.pesquisaTodosUsuarios()) {
+			if (usuario instanceof Doador) {
+				itens.addAll(((Doador) usuario).getItensDoacao());
+			}
+		}
+		
+		for (Item item : itens) {
+			if(item.getDescricao().equals(descricao)) {
+				matches.add(item);
+			}
+		}
+		
+		return matches;
 	}
 	
 	//DESCRITORES
