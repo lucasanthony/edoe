@@ -1,6 +1,7 @@
 package com.edoe.Controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -22,6 +23,8 @@ import com.edoe.Model.Usuario;
 import com.edoe.Service.DescritorItemService;
 import com.edoe.Service.ItemService;
 import com.edoe.Service.UsuarioService;
+import com.edoe.Util.DescricaoComparator;
+import com.edoe.Util.QuantidadeComparator;
 
 @RestController
 @RequestMapping({ "/item" })
@@ -63,6 +66,24 @@ public class ItemController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@GetMapping("/itensOrdemDesc")
+	public List<Item> getItensSortDesc(){
+		DescricaoComparator desc = new DescricaoComparator();
+		List<Item> listaOrdenada = itemService.retornaItens();
+		Collections.sort(listaOrdenada, desc);
+		
+		return listaOrdenada;
+	}
+	
+	@GetMapping("/itensOrdemQuant")
+	public List<Item> getItensSortQuant(){
+		QuantidadeComparator qntComparator = new QuantidadeComparator();
+		List<Item> listaOrdenada = itemService.retornaItens();
+		Collections.sort(listaOrdenada, qntComparator);
+		
+		return listaOrdenada;
 	}
 	
 	@GetMapping("/itensNecessarios")
