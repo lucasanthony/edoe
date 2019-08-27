@@ -91,6 +91,7 @@ public class ItemService {
 		Item item = this.itemService.findById(idItem);
 		if (doador.getItensDoacao().contains(item)) {
 			doador.getItensDoacao().remove(item);
+			this.itemDAO.delete(item);
 		}
 	}
 
