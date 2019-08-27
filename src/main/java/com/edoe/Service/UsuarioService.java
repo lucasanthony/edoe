@@ -7,7 +7,6 @@ import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.edoe.Model.ClasseUsuario;
 import com.edoe.Model.Doador;
 import com.edoe.Model.Item;
 import com.edoe.Model.Usuario;
