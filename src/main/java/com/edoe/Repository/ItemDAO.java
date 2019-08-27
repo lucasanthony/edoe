@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.edoe.Model.Item;
 
 @Repository
-public interface ItemDAO extends MongoRepository<Item, ObjectId> {
-	
-	Item findItemById(ObjectId id);
+public interface ItemDAO extends MongoRepository<Item, String> {
+	Item findItemById(String id);
 }

@@ -2,7 +2,6 @@ package com.edoe.Service;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +33,7 @@ public class ItemService {
 		return itemDAO.insert(item);
 	}
 
-	public Item findById(ObjectId id) {
+	public Item findById(String id) {
 		return itemDAO.findItemById(id);
 	}
 
@@ -48,13 +47,13 @@ public class ItemService {
 		usuarioService.atualizaUsuario(idUsuario, usuario);
 	}
 	
-	public void atualizaQuantidadeItem(ObjectId id, int quantidade) {
+	public void atualizaQuantidadeItem(String id, int quantidade) {
 		Item item = itemDAO.findItemById(id);
 		item.setQuantidade(quantidade);
 		itemDAO.save(item);
 	}
 
-/*	public void atualizaTagsItem(ObjectId idItem, String tags) {
+/*	public void atualizaTagsItem(String idItem, String tags) {
 		Item item = itemDAO.findItemById(idItem);
 		String[] array = tags.split(",");
 		for (String tag : array) {
@@ -75,7 +74,7 @@ public class ItemService {
 	}
 
 	/*
-	public void cadastraItemDoacao(String idDoador, ObjectId idItem, String descricao, int quantidade, String tags) {
+	public void cadastraItemDoacao(String idDoador, String idItem, String descricao, int quantidade, String tags) {
 
 		Doador doador = (Doador) usuarioService.pesquisaUsuarioId(idDoador);
 		if (!checaItemDoacao(descricao)) {
@@ -87,7 +86,7 @@ public class ItemService {
 		doador.cadastraItem(item);
 	}
 */
-	public void removerItemDoacao(String idDoador, ObjectId idItem) {
+	public void removerItemDoacao(String idDoador, String idItem) {
 		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
 		if (doador.getItensDoacao().contains(item)) {
@@ -95,7 +94,7 @@ public class ItemService {
 		}
 	}
 
-	public void atualizarQuantidadeItemDoacao(String idDoador, ObjectId idItem, int quantidade) {
+	public void atualizarQuantidadeItemDoacao(String idDoador, String idItem, int quantidade) {
 		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
 		if (doador.getItensDoacao().contains(item)) {
@@ -103,7 +102,7 @@ public class ItemService {
 		}
 	}
 
-	/*public void atualizarTagsItemDoacao(String idDoador, ObjectId idItem, String tags) {
+	/*public void atualizarTagsItemDoacao(String idDoador, String idItem, String tags) {
 		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
 		if (doador.getItensDoacao().contains(item)) {
@@ -150,7 +149,7 @@ public class ItemService {
 
 	}
 
-	public void deletarItemDoador(String idUsuario, ObjectId idItem) throws Exception {
+	public void deletarItemDoador(String idUsuario, String idItem) throws Exception {
 		Doador usuario = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
 		Item item = itemService.findById(idItem);
 		if(usuario.getItensDoacao().contains(item)) {
@@ -182,7 +181,7 @@ public class ItemService {
 		
 	}
 
-	public void deletarItemReceptor(String idUsuario, ObjectId idItem) throws Exception {
+	public void deletarItemReceptor(String idUsuario, String idItem) throws Exception {
 		Receptor usuario = (Receptor) usuarioService.pesquisaUsuarioId(idUsuario);
 		Item item = itemService.findById(idItem);
 		if(usuario.getItensNecessarios().contains(item)) {

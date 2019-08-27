@@ -98,7 +98,7 @@ public class ItemController {
 	}
 
 	@GetMapping("/encontrar/{id}")
-	public Item findById(@PathVariable ObjectId id) {
+	public Item findById(@PathVariable String id) {
 		return this.itemService.findById(id);
 	}
 
@@ -108,7 +108,7 @@ public class ItemController {
 	}
 	
 	@DeleteMapping("deletarItemDoador/{id}/{Id}")
-	public void deletarItemDoador(@PathVariable String id, @PathVariable ObjectId Id) throws Exception {
+	public void deletarItemDoador(@PathVariable String id, @PathVariable String Id) throws Exception {
 		itemService.deletarItemDoador(id, Id);
 	}
 
@@ -123,7 +123,7 @@ public class ItemController {
 	}
 	
 	@DeleteMapping("deletarItemReceptor/{id}/{Id}")
-	public void deletarItemReceptor(@PathVariable String id, @PathVariable ObjectId Id) throws Exception {
+	public void deletarItemReceptor(@PathVariable String id, @PathVariable String Id) throws Exception {
 		itemService.deletarItemReceptor(id, Id);
 	}
 	
