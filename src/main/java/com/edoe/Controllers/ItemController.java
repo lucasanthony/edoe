@@ -106,7 +106,12 @@ public class ItemController {
 	public List<Matching> matching(@RequestParam String idReceptor, @RequestParam String idItem) {
 		return this.itemService.matching(idReceptor, idItem);
 	}
-
+	
+	@PostMapping("/doacao")
+	public void realizaDoacao(String idItemNecessario, String idItemDoador) {
+		itemService.realizaDoacao(idItemNecessario, idItemDoador);
+		
+	}
 	// DESCRITORES
 
 	@PostMapping("/adicionadescritor")

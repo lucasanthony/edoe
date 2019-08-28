@@ -216,14 +216,14 @@ public class ItemService {
 		Item item = this.itemDAO.findItemById(idItem);
 		List<Item> itens = this.itemDAO.findItensBytipoUsuario(TipoUsuario.DOADOR);
 		List<Matching> matches = new ArrayList<>();
-
-		for (int i = 0; i < itens.size(); i++) {
-			if (itens.get(i).getDescricao().equals(item.getDescricao())) {
-				Matching matching = new Matching(itens.get(i));
+		
+		for (Item itemDoador : itens) {
+			if (itemDoador.getDescricao().equals(item.getDescricao())) {
+				Matching matching = new Matching(itemDoador);
 				matches.add(matching);
 			}
 		}
-
+		
 		for (Matching matching : matches) {
 			matching.setPontos(this.pontosPorTags(item.getTags().split(","), matching.getItem().getTags().split(",")));
 		}
@@ -247,5 +247,17 @@ public class ItemService {
 			}
 		}
 		return retorno;
+	}
+
+	public void realizaDoacao(String idItemNecessario, String idItemDoador) {
+		Item itemNecessario = itemDAO.findItemById(idItemNecessario);
+		Item itemDoador = itemDAO.findItemById(idItemDoador);
+		if (itemNecessario.getDescricao().equals(itemDoador.getDescricao())) {
+			itemDoador.setQuantidade(itemDoador.getQuantidade() - itemNecessario.getQuantidade());
+			itemNecessario.setQuantidade(0);
+			atualizaQuantidadeItem(idItemDoador, itemDoador.getQuantidade());
+			atualizaQuantidadeItem(idItemNecessario, itemNecessario.getQuantidade());
+		}
+		
 	}
 }
