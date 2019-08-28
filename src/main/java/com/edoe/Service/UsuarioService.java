@@ -97,8 +97,8 @@ public class UsuarioService {
 		return usuario;
 	}
 
-	public List<Item> pesquisaitensDoacao(String id) {
-		Doador doador = (Doador) usuarioDAO.findUsuarioById(id);
+	public List<Item> pesquisaitensDoacao(String idUsuario) {
+		Doador doador = (Doador) usuarioDAO.findUsuarioById(idUsuario);
 		return doador.getItensDoacao();
 		
 	}

@@ -43,8 +43,8 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("itensdoacao/{id}")
-	public List<Item> pesquisaItemsDoacao(@PathVariable String id) {
-		return this.usuarioService.pesquisaitensDoacao(id);
+	public List<Item> pesquisaItemsDoacao(@PathVariable String idUsuario) {
+		return this.usuarioService.pesquisaitensDoacao(idUsuario);
 	}
 
 	@PostMapping("/insereReceptor")
@@ -71,22 +71,22 @@ public class UsuarioController {
 
 	}
 
-	@PutMapping("/atualiza/{id}")
-	public Usuario atualizarUsuario(@PathVariable String id, @RequestBody Usuario usuario) throws Exception {
-		return usuarioService.atualizaUsuario(id, usuario);
+	@PutMapping("/{idUsuario}")
+	public Usuario atualizarUsuario(@PathVariable String idUsuario, @RequestBody Usuario usuario) throws Exception {
+		return usuarioService.atualizaUsuario(idUsuario, usuario);
 	}
 
-	@GetMapping("/buscaid/{id}")
-	public Usuario pesquisaUsuarioDoadorId(@PathVariable String id) {
-		return usuarioService.pesquisaUsuarioId(id);
+	@GetMapping("usuarioId/{idUsuario}")
+	public Usuario pesquisaUsuarioDoadorId(@PathVariable String idUsuario) {
+		return usuarioService.pesquisaUsuarioId(idUsuario);
 	}
 
-	@GetMapping("/buscanome/{nome}")
+	@GetMapping("/{nome}")
 	public String pesquisaUsuarioNome(@PathVariable String nome) {
 		return this.usuarioService.pesquisaUsuarioNome(nome);
 	}
 
-	@DeleteMapping("/remove/{id}")
+	@DeleteMapping("/{id}")
 	public Usuario removeUsuario(@PathVariable String id) throws Exception {
 		return this.usuarioService.removeUsuario(id);
 	}

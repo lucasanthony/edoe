@@ -58,8 +58,8 @@ public class ItemController {
 	}
 
 	@DeleteMapping("itemreceptor/{id}/{Id}")
-	public void deletarItemReceptor(@PathVariable String id, @PathVariable String Id) throws Exception {
-		itemService.deletarItemReceptor(id, Id);
+	public void deletarItemReceptor(@PathVariable String idUsuario, @PathVariable String idItem) throws Exception {
+		itemService.deletarItemReceptor(idUsuario, idItem);
 	}
 
 	@GetMapping("/itensOrdemDesc")
