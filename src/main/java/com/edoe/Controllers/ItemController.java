@@ -89,7 +89,7 @@ public class ItemController {
 
 	@DeleteMapping("/itemdoador/{id}/{Id}")
 	public void deletarItemDoador(@PathVariable String id, @PathVariable String Id) throws Exception {
-		itemService.deletarItemDoador(id, Id);
+		itemService.removerItemDoacao(id, Id);
 	}
 
 	@PutMapping("/itemdoador/{idUsuario}")
@@ -107,9 +107,9 @@ public class ItemController {
 		return this.itemService.matching(idReceptor, idItem);
 	}
 	
-	@PostMapping("/doacao")
-	public void realizaDoacao(String idItemNecessario, String idItemDoador) {
-		itemService.realizaDoacao(idItemNecessario, idItemDoador);
+	@PostMapping("/doacao/{idReceptor}")
+	public void realizaDoacao(@RequestParam String idItemNecessario, @RequestParam String idItemDoador, @PathVariable String idReceptor) {
+		itemService.realizaDoacao(idItemNecessario, idItemDoador, idReceptor);
 		
 	}
 	// DESCRITORES

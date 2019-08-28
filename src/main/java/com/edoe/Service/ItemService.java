@@ -1,20 +1,22 @@
 package com.edoe.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edoe.Model.DescritorItem;
+import com.edoe.Model.Doacao;
 import com.edoe.Model.Doador;
 import com.edoe.Model.Item;
 import com.edoe.Model.Matching;
 import com.edoe.Model.Receptor;
 import com.edoe.Model.TipoUsuario;
 import com.edoe.Model.Usuario;
+import com.edoe.Repository.DoacaoDAO;
 import com.edoe.Repository.ItemDAO;
 import com.edoe.Util.DescricaoComparator;
 import com.edoe.Util.QuantidadeComparator;
@@ -24,6 +26,9 @@ public class ItemService {
 
 	@Autowired
 	private ItemDAO itemDAO;
+	
+	@Autowired
+	private DoacaoDAO doacaoDAO;
 
 	@Autowired
 	private UsuarioService usuarioService;
@@ -51,8 +56,7 @@ public class ItemService {
 	public void cadastraItemDoador(String idUsuario, Item item) throws Exception {
 		Doador usuario = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
 		cadastraDescritor(item.getDescricao());
-		usuario.getItensDoacao().add(item);
-		usuarioService.atualizaUsuario(idUsuario, usuario);
+		itemDAO.save(item);
 	}
 
 	public void atualizaQuantidadeItem(String id, int quantidade) {
@@ -62,30 +66,27 @@ public class ItemService {
 	}
 
 	public void atualizaItemDoador(String idUsuario, Item item) throws Exception {
-		Doador doador = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
-		if (doador.getItensDoacao().contains(item)) {
-			int index = doador.getItensDoacao().indexOf(item);
-			doador.getItensDoacao().get(index).setQuantidade(item.getQuantidade());
-			doador.getItensDoacao().get(index).setTags(item.getTags());
+		if(item.getIdDoador().equals(idUsuario)) {
+			itemDAO.save(item);
 		}
-		usuarioService.atualizaUsuario(idUsuario, doador);
+		
 	}
 
 	public void removerItemDoacao(String idDoador, String idItem) {
-		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
-		if (doador.getItensDoacao().contains(item)) {
-			doador.getItensDoacao().remove(item);
-			this.itemDAO.delete(item);
+		if (item.getIdDoador().equals(idDoador)) {
+			itemDAO.delete(item);
 		}
+		
+		
 	}
 
 	public void atualizarQuantidadeItemDoacao(String idDoador, String idItem, int quantidade) {
-		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
 		Item item = this.itemService.findById(idItem);
-		if (doador.getItensDoacao().contains(item)) {
+		if (item.getIdDoador().equals(idDoador)) {
 			this.itemService.atualizaQuantidadeItem(idItem, quantidade);
 		}
+		
 	}
 
 	/*
@@ -136,14 +137,6 @@ public class ItemService {
 
 	}
 
-	public void deletarItemDoador(String idUsuario, String idItem) throws Exception {
-		Doador usuario = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
-		Item item = itemService.findById(idItem);
-		if (usuario.getItensDoacao().contains(item)) {
-			usuario.getItensDoacao().remove(item);
-		}
-		usuarioService.atualizaUsuario(idUsuario, usuario);
-	}
 
 	public void deletarTodos() {
 		itemDAO.deleteAll();
@@ -249,14 +242,18 @@ public class ItemService {
 		return retorno;
 	}
 
-	public void realizaDoacao(String idItemNecessario, String idItemDoador) {
+	public void realizaDoacao(String idItemNecessario, String idItemDoador, String idReceptor) {
 		Item itemNecessario = itemDAO.findItemById(idItemNecessario);
 		Item itemDoador = itemDAO.findItemById(idItemDoador);
+		Receptor receptor = (Receptor) usuarioService.pesquisaUsuarioId(idReceptor);
+		Doador doador = (Doador) usuarioService.pesquisaUsuarioId(itemDoador.getIdDoador());
 		if (itemNecessario.getDescricao().equals(itemDoador.getDescricao())) {
 			itemDoador.setQuantidade(itemDoador.getQuantidade() - itemNecessario.getQuantidade());
 			itemNecessario.setQuantidade(0);
 			atualizaQuantidadeItem(idItemDoador, itemDoador.getQuantidade());
 			atualizaQuantidadeItem(idItemNecessario, itemNecessario.getQuantidade());
+			Doacao doacao = new Doacao(doador.toStringDoacao(), itemDoador.getDescricao(), receptor.toStringRecebimento());
+			doacaoDAO.save(doacao);
 		}
 		
 	}

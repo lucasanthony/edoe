@@ -9,23 +9,59 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "DOACAO")
 public class Doacao {
 	
-	private Item item;
+	private String itemDescricao;
+	
+	private String doador;
+	
+	private String receptor;
 	
 	private LocalDate date;
 
-	public Doacao(Item item) {
+	public Doacao(String doador, String itemDescricao, String receptor) {
 		super();
-		this.item = item;
+		this.doador = doador;
+		this.itemDescricao = itemDescricao;
+		this.receptor = receptor;
 		this.date = LocalDate.now();
 	}
 
-	public Item getItem() {
-		return item;
+	 
+
+	public String getItem() {
+		return itemDescricao;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+
+
+	public void setItem(String item) {
+		this.itemDescricao = item;
 	}
+
+
+
+	public String getDoador() {
+		return doador;
+	}
+
+
+
+	public void setDoador(String doador) {
+		this.doador = doador;
+	}
+
+
+
+	public String getReceptor() {
+		return receptor;
+	}
+
+
+
+	public void setReceptor(String receptor) {
+		this.receptor = receptor;
+	}
+
+
 
 	public String getDate() {		
 		return DateTimeFormatter.ofPattern("yyy/MM/dd").format(date);

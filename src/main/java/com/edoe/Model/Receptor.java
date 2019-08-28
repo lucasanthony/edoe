@@ -56,5 +56,9 @@ public class Receptor extends Usuario {
 	public String toString() {
 		return nome + "/" + id + ", " + email + ", " + celular + ", status: " + STATUS;
 	}
+	
+	public String toStringRecebimento() {
+		return nome + "/" + id;
+	}
 
 }

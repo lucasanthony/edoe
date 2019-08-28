@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.edoe.Model.Doador;
 import com.edoe.Model.Item;
 import com.edoe.Model.Usuario;
+import com.edoe.Repository.ItemDAO;
 import com.edoe.Repository.UsuarioDAO;
 
 @Service
@@ -17,6 +18,9 @@ public class UsuarioService {
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
+	
+	@Autowired
+	private ItemDAO itemDAO;
 
 	public void insereUsuario(Usuario usuario) {
 		usuarioDAO.save(usuario);
@@ -98,8 +102,7 @@ public class UsuarioService {
 	}
 
 	public List<Item> pesquisaitensDoacao(String idUsuario) {
-		Doador doador = (Doador) usuarioDAO.findUsuarioById(idUsuario);
-		return doador.getItensDoacao();
+		return itemDAO.findItensByIdDoador(idUsuario);
 		
 	}
 
