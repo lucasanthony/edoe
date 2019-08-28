@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edoe.Model.DescritorItem;
 import com.edoe.Model.Doador;
 import com.edoe.Model.Item;
+import com.edoe.Model.Matching;
 import com.edoe.Model.Receptor;
 import com.edoe.Model.TipoUsuario;
 import com.edoe.Model.Usuario;
@@ -59,7 +61,6 @@ public class ItemService {
 		itemDAO.save(item);
 	}
 
-
 	public void atualizaItemDoador(String idUsuario, Item item) throws Exception {
 		Doador doador = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
 		if (doador.getItensDoacao().contains(item)) {
@@ -69,7 +70,6 @@ public class ItemService {
 		}
 		usuarioService.atualizaUsuario(idUsuario, doador);
 	}
-
 
 	public void removerItemDoacao(String idDoador, String idItem) {
 		Doador doador = (Doador) this.usuarioService.pesquisaUsuarioId(idDoador);
@@ -212,21 +212,40 @@ public class ItemService {
 		return listaOrdenada;
 	}
 
-	public List<Item> matching(String id, Item item) {
-		List<Item> itens = new ArrayList<>();
-		List<Item> matches = new ArrayList<>();
-		for (Usuario usuario : usuarioService.pesquisaTodosUsuarios()) {
-			if (usuario instanceof Doador) {
-				itens.addAll(((Doador) usuario).getItensDoacao());
+	public List<Matching> matching(String id, String idItem) {
+		Item item = this.itemDAO.findItemById(idItem);
+		List<Item> itens = this.itemDAO.findItensBytipoUsuario(TipoUsuario.DOADOR);
+		List<Matching> matches = new ArrayList<>();
+
+		for (int i = 0; i < itens.size(); i++) {
+			if (itens.get(i).getDescricao().equals(item.getDescricao())) {
+				Matching matching = new Matching(itens.get(i));
+				matches.add(matching);
 			}
 		}
 
-		for (Item it : itens) {
-			if (it.getDescricao().equals(item.getDescricao())) {
-				matches.add(it);
-			}
+		for (Matching matching : matches) {
+			matching.setPontos(this.pontosPorTags(item.getTags().split(","), matching.getItem().getTags().split(",")));
 		}
 
 		return matches;
+
+	}
+
+	private int pontosPorTags(String[] tags1, String[] tags2) {
+		List<Object> tagsNecessario = Arrays.asList(tags1);
+		List<Object> tagsDoacao = Arrays.asList(tags2);
+		
+		int retorno = 0;
+		for (int i = 0; i < tagsNecessario.size(); i++) {
+			if (tagsDoacao.contains(tagsNecessario.get(i))) {
+				if (tagsNecessario.indexOf(tagsNecessario.get(i)) == tagsDoacao.indexOf(tagsNecessario.get(i))) {
+					retorno += 5;
+				} else {
+					retorno += 2;
+				}
+			}
+		}
+		return retorno;
 	}
 }

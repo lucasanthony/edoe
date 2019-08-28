@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edoe.Model.DescritorItem;
 import com.edoe.Model.Item;
+import com.edoe.Model.Matching;
 import com.edoe.Model.TipoUsuario;
 import com.edoe.Service.DescritorItemService;
 import com.edoe.Service.ItemService;
@@ -101,8 +103,8 @@ public class ItemController {
 	}
 
 	@GetMapping("/matching")
-	public List<Item> matching(String idReceptor, Item item) {
-		return this.itemService.matching(idReceptor, item);
+	public List<Matching> matching(@RequestParam String idReceptor, @RequestParam String idItem) {
+		return this.itemService.matching(idReceptor, idItem);
 	}
 
 	// DESCRITORES

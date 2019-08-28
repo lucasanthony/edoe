@@ -20,12 +20,15 @@ public class Item {
 	private int quantidade;
 	
 	private TipoUsuario tipoUsuario;
+	
+	private String idDoador;
 
-	public Item(String descricao, int quantidade, String tags) {
+	public Item(String descricao, int quantidade, String tags, String idDoador) {
 		super();
 		this.descricao = descricao;
 		this.quantidade = quantidade;
 		this.tags = tags;
+		this.idDoador = idDoador;
 	}
 
 	public String getId() {
@@ -65,6 +68,14 @@ public class Item {
 
 	public TipoUsuario getTipoUsuario() {
 		return tipoUsuario;
+	}
+
+	public String getIdDoador() {
+		return idDoador;
+	}
+
+	public void setIdDoador(String idDoador) {
+		this.idDoador = idDoador;
 	}
 
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
