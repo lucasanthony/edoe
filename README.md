@@ -28,6 +28,7 @@
 >Os teste do sistema são feitos via postman, e após a execução do sistema o mesmo vai estar apto para ser testado. Os testes seguem uma base de endpoints que serão descritos posteriormente, neste mesmo documento.
 
 ### ENDPOINTS
-
+>Todos os endpoint tem sua URL iniciada por "localhost:8080"
+>Endpoints de Usuários
 
 Universidade Federal de Campina Grande, 2019.
