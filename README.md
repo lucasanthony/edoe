@@ -11,12 +11,9 @@
 
 #### [Especificação original](https://docs.google.com/document/d/e/2PACX-1vST2TI5lDbtMlv8rhFYJkYnrfgqzyWDv6DDvvAajz3_KK4tAs_UnAbYdI6oeMQA6jEHo5HwUAatHmd8/pub)
 
-### [Heroku](https://dashboard.heroku.com/apps/edoe)
-
 #### Time:
 * [Lucas Anthony](https://github.com/lucasanthony)
 * [Pedro Wanderley](https://github.com/pedrofwanderley)
-
 
 ### Instalação
 >Fazer download do zip do [projeto do github](https://github.com/lucasanthony/edoe), após o download descompactar a pasta e abrir o projeto em alguma IDE(preferencialmente ECLIPSE).
@@ -28,7 +25,7 @@
 >Os teste do sistema são feitos via postman, e após a execução do sistema o mesmo vai estar apto para ser testado. Os testes seguem uma base de endpoints que serão descritos posteriormente, neste mesmo documento.
 
 ### ENDPOINTS
->Todos os endpoint tem sua URL iniciada por "localhost:8080"
+>Todos os endpoint tem sua URL iniciada por "https://edoe.herokuapp.com/"
 >Endpoints de Usuários
 
 Universidade Federal de Campina Grande, 2019.
