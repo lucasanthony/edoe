@@ -32,8 +32,8 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	private String path = "C:\\novosReceptores.csv";
 
-	@PostMapping("/adicionadoador")
-	public Usuario adicionaDoador(@RequestBody Doador doador) throws Exception {
+	@PostMapping("/doador")
+	public Usuario cadastraDoador(@RequestBody Doador doador) throws Exception {
 		return usuarioService.adicionaDoador(doador);
 	}
 
@@ -47,8 +47,8 @@ public class UsuarioController {
 		return this.usuarioService.pesquisaitensDoacao(idUsuario);
 	}
 
-	@PostMapping("/insereReceptor")
-	public void cadastrarUsuarioReceptor() throws IOException {
+	@PostMapping("/receptor")
+	public void cadastrarReceptor() throws IOException {
 		Scanner sc = new Scanner(new File(path));
 		String linha = null;
 		while (sc.hasNextLine()) {
@@ -67,16 +67,12 @@ public class UsuarioController {
 
 	}
 
-	public void atualizarReceptores() {
-
-	}
-
 	@PutMapping("/{idUsuario}")
 	public Usuario atualizarUsuario(@PathVariable String idUsuario, @RequestBody Usuario usuario) throws Exception {
 		return usuarioService.atualizaUsuario(idUsuario, usuario);
 	}
 
-	@GetMapping("usuarioId/{idUsuario}")
+	@GetMapping("id/{idUsuario}")
 	public Usuario pesquisaUsuarioDoadorId(@PathVariable String idUsuario) {
 		return usuarioService.pesquisaUsuarioId(idUsuario);
 	}

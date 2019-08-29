@@ -54,7 +54,7 @@ public class ItemService {
 	}
 
 	public void cadastraItemDoador(String idUsuario, Item item) throws Exception {
-		Doador usuario = (Doador) usuarioService.pesquisaUsuarioId(idUsuario);
+		item.setIdDoador(idUsuario);
 		cadastraDescritor(item.getDescricao());
 		itemDAO.save(item);
 	}
@@ -107,11 +107,11 @@ public class ItemService {
 	}
 
 	public void cadastraDescritor(String descricao) throws Exception {
-		if (descritorService.existeDescritor(descricao)) {
-			throw new Exception("Descritor já existe");
+		if (!descritorService.existeDescritor(descricao)) {
+			DescritorItem descritor = new DescritorItem(descricao);
+			descritorService.insereDescritor(descritor);
 		}
-		DescritorItem descritor = new DescritorItem(descricao);
-		descritorService.insereDescritor(descritor);
+		
 	}
 
 	public String retornaDescritores() {
@@ -218,7 +218,7 @@ public class ItemService {
 		}
 		
 		for (Matching matching : matches) {
-			matching.setPontos(this.pontosPorTags(item.getTags().split(","), matching.getItem().getTags().split(",")));
+			matching.somaPontos(this.pontosPorTags(item.getTags().split(","), matching.getItem().getTags().split(",")));
 		}
 
 		return matches;
@@ -256,5 +256,9 @@ public class ItemService {
 			doacaoDAO.save(doacao);
 		}
 		
+	}
+
+	public List<Doacao> retornaDoacoes() {
+		return doacaoDAO.findAll();
 	}
 }

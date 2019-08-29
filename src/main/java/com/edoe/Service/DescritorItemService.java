@@ -29,4 +29,8 @@ public class DescritorItemService {
 	public List<DescritorItem> carregaDescritores() {
 		return descritorDao.findAll();
 	}
+	
+	public void deletaDecritores() {
+		descritorDao.deleteAll();
+	}
 }

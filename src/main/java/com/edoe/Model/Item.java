@@ -23,7 +23,7 @@ public class Item {
 	
 	private String idDoador;
 
-	public Item(String descricao, int quantidade, String tags, String idDoador) {
+	public Item(String descricao, int quantidade, String tags) {
 		super();
 		this.descricao = descricao;
 		this.quantidade = quantidade;

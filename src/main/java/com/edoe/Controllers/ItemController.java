@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edoe.Model.DescritorItem;
+import com.edoe.Model.Doacao;
 import com.edoe.Model.Item;
 import com.edoe.Model.Matching;
 import com.edoe.Model.TipoUsuario;
@@ -34,6 +35,7 @@ public class ItemController {
 	public void cadastrarItemDoador(@PathVariable String usuarioId, @RequestBody Item item) {
 		try {
 			item.setTipoUsuario(TipoUsuario.DOADOR);
+			item.setIdDoador(usuarioId);
 			itemService.cadastrarItem(item);
 			itemService.cadastraItemDoador(usuarioId, item);
 		} catch (Exception e) {
@@ -102,13 +104,13 @@ public class ItemController {
 		itemService.deletarTodos();
 	}
 
-	@GetMapping("/matching")
-	public List<Matching> matching(@RequestParam String idReceptor, @RequestParam String idItem) {
+	@GetMapping("/matching/{idReceptor}/{idItem}")
+	public List<Matching> matching(@PathVariable String idReceptor, @PathVariable String idItem) {
 		return this.itemService.matching(idReceptor, idItem);
 	}
 	
-	@PostMapping("/doacao/{idReceptor}")
-	public void realizaDoacao(@RequestParam String idItemNecessario, @RequestParam String idItemDoador, @PathVariable String idReceptor) {
+	@PostMapping("/doacao/{idItemNecessario}/{idItemDoador}/{idReceptor}")
+	public void realizaDoacao(@PathVariable String idItemNecessario, @PathVariable String idItemDoador, @PathVariable String idReceptor) {
 		itemService.realizaDoacao(idItemNecessario, idItemDoador, idReceptor);
 		
 	}
@@ -128,5 +130,14 @@ public class ItemController {
 	public List<DescritorItem> getDescritores() {
 		return descritorService.carregaDescritores();
 	}
+	
+	@DeleteMapping("/descritores")
+	public void deletaDescritores() {
+		descritorService.deletaDecritores();
+	}
 
+	@GetMapping("/doacao")
+	public List<Doacao> retornaDoacoes(){
+		return itemService.retornaDoacoes();
+	}
 }

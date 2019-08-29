@@ -26,6 +26,10 @@ public class Matching {
 	public void setPontos(Integer pontos) {
 		this.pontos = pontos;
 	}
+	
+	public void somaPontos(Integer pontos) {
+		this.pontos += pontos;
+	}
 
 	@Override
 	public String toString() {
