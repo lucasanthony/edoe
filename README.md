@@ -17,4 +17,18 @@
 * [Lucas Anthony](https://github.com/lucasanthony)
 * [Pedro Wanderley](https://github.com/pedrofwanderley)
 
+
+### Instalação
+>Fazer download do zip do [projeto do github](https://github.com/lucasanthony/edoe), após o download descompactar a pasta e abrir o projeto em alguma IDE(preferencialmente ECLIPSE).
+
+### Execução
+>Após feito o download do projeto, e a sua abertura na IDE escolhida, percorrer até a classe "EdoeApplication.java", localizada no seguinte path: "/edoe/src/main/java/com/edoe/EdoeApplication.java", após encontrar a classe, clicar com o botão direito em cima da mesma (localizada no "Project Explorer" do Eclipse), e aperta no seguinte caminho: "Run As -> Java Application".
+
+### Testes
+>Os teste do sistema são feitos via postman, e após a execução do sistema o mesmo vai estar apto para ser testado. Os testes seguem uma base de endpoints que serão descritos posteriormente, neste mesmo documento.
+
+### ENDPOINTS
+>Todos os endpoint tem sua URL iniciada por "localhost:8080"
+>Endpoints de Usuários
+
 Universidade Federal de Campina Grande, 2019.
