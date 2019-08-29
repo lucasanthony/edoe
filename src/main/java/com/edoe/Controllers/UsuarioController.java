@@ -42,7 +42,7 @@ public class UsuarioController {
 		return this.usuarioService.pesquisaTodosUsuarios();
 	}
 	
-	@GetMapping("itensdoacao/{id}")
+	@GetMapping("itensdoacao/{idUsuario}")
 	public List<Item> pesquisaItemsDoacao(@PathVariable String idUsuario) {
 		return this.usuarioService.pesquisaitensDoacao(idUsuario);
 	}
