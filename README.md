@@ -24,6 +24,11 @@
 ### Testes
 >Os teste do sistema são feitos via postman, e após a execução do sistema o mesmo vai estar apto para ser testado. Os testes seguem uma base de endpoints que serão descritos posteriormente, neste mesmo documento.
 
+### Arquitetura
+
+>O Servidor foi desenvolvido utilizando a linguagem de programação Java, uma linguagem bem consolidada e conhecida além de possuir uma boa documentação. Para desenvolver a API provedora dos serviços com uma certa agilidade, usamos o framework da Spring, o Spring Boot, que é uma ferramenta que facilita bastante a criação de uma API REST voltada para aplicações e sistemas web. O padrão que aderimos é semelhante ao que é usado na parte do cliente, que é o padrão MVC, possuindo divisões do formato de Models, Repositories, Services e Controllers. Usamos uma comunicação com o banco de dados não-relacional MongoDB, devido a escalabilidade horizontal que obtemos com ele, além também de facilitar o formato dos dados enviados ao Cliente, pelo fato de serem inseridos em JSON, conseguindo uma boa performance.
+
+
 ### ENDPOINTS
 >Todos os endpoint tem sua URL iniciada por "https://edoe.herokuapp.com/"
 >Endpoints de Usuários
