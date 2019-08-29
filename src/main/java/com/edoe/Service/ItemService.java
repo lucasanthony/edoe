@@ -233,9 +233,9 @@ public class ItemService {
 		for (int i = 0; i < tagsNecessario.size(); i++) {
 			if (tagsDoacao.contains(tagsNecessario.get(i))) {
 				if (tagsNecessario.indexOf(tagsNecessario.get(i)) == tagsDoacao.indexOf(tagsNecessario.get(i))) {
-					retorno += 5;
+					retorno += 10;
 				} else {
-					retorno += 2;
+					retorno += 5;
 				}
 			}
 		}
