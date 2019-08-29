@@ -47,6 +47,7 @@ public class ItemController {
 	public void cadastrarItemReceptor(@PathVariable String usuarioId, @RequestBody Item item) {
 		try {
 			item.setTipoUsuario(TipoUsuario.RECEPTOR);
+			item.setIdDoador("");
 			itemService.cadastrarItem(item);
 			itemService.cadastraItemReceptor(usuarioId, item);
 		} catch (Exception e) {
