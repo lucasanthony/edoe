@@ -60,11 +60,11 @@ public class ItemController {
 		itemService.atualizaItemReceptor(idUsuario, item);
 	}
 
-	@DeleteMapping("itemreceptor/{idUsuario}/{idItem}")
+	@DeleteMapping("itemreceptor/{idUsuario}/item/{idItem}")
 	public void deletarItemReceptor(@PathVariable String idUsuario, @PathVariable String idItem) throws Exception {
 		itemService.deletarItemReceptor(idUsuario, idItem);
 	}
-
+	// /itens?order=desc - query parameters
 	@GetMapping("/itensOrdemDesc")
 	public List<Item> getItensSortDesc() {
 		return this.itemService.getItensSortDesc();
@@ -90,7 +90,7 @@ public class ItemController {
 		return this.itemService.retornaItens();
 	}
 
-	@DeleteMapping("/itemdoador/{id}/{Id}")
+	@DeleteMapping("/itemdoador/{id}/item/{Id}")
 	public void deletarItemDoador(@PathVariable String id, @PathVariable String Id) throws Exception {
 		itemService.removerItemDoacao(id, Id);
 	}
@@ -105,7 +105,7 @@ public class ItemController {
 		itemService.deletarTodos();
 	}
 
-	@GetMapping("/matching/{idReceptor}/{idItem}")
+	@GetMapping("/matching/{idReceptor}/item/{idItem}")
 	public List<Matching> matching(@PathVariable String idReceptor, @PathVariable String idItem) {
 		return this.itemService.matching(idReceptor, idItem);
 	}
@@ -117,15 +117,15 @@ public class ItemController {
 	}
 	// DESCRITORES
 
-	@PostMapping("/adicionadescritor")
+	@PostMapping("/descritor")
 	public void cadastrarDescritor(@RequestBody DescritorItem descritor) {
 		descritorService.insereDescritor(descritor);
 	}
 
-	@GetMapping("/descritoresQuant")
-	public String retornaItemDesc() {
-		return this.itemService.retornaItemDesc();
-	}
+//	@GetMapping("/descritoresQuant")
+//	public String retornaItemDesc() {
+//		return this.itemService.retornaItemDesc();
+//	}
 
 	@GetMapping("/descritores")
 	public List<DescritorItem> getDescritores() {

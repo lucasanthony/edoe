@@ -89,14 +89,6 @@ public class ItemService {
 		
 	}
 
-	/*
-	 * public void atualizarTagsItemDoacao(String idDoador, String idItem, String
-	 * tags) { Doador doador = (Doador)
-	 * this.usuarioService.pesquisaUsuarioId(idDoador); Item item =
-	 * this.itemService.findById(idItem); if
-	 * (doador.getItensDoacao().contains(item)) {
-	 * this.itemService.atualizaTagsItem(idItem, tags); } }
-	 */
 
 	public DescritorItem findDescritor(String descricao) {
 		return descritorService.findById(descricao);

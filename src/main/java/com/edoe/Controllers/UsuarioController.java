@@ -30,7 +30,7 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	private String path = "home\\lucasafo\\novosReceptores.csv";
+	private String path = "/home/lucasafo/novosReceptores.csv";
 
 	@PostMapping("/doador")
 	public Usuario cadastraDoador(@RequestBody Doador doador) throws Exception {
