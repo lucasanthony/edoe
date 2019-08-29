@@ -60,7 +60,7 @@ public class ItemController {
 		itemService.atualizaItemReceptor(idUsuario, item);
 	}
 
-	@DeleteMapping("itemreceptor/{id}/{Id}")
+	@DeleteMapping("itemreceptor/{idUsuario}/{idItem}")
 	public void deletarItemReceptor(@PathVariable String idUsuario, @PathVariable String idItem) throws Exception {
 		itemService.deletarItemReceptor(idUsuario, idItem);
 	}
