@@ -31,7 +31,7 @@ public class ItemController {
 	@Autowired
 	private DescritorItemService descritorService;
 
-	@PostMapping("/itemtemdoador/{usuarioId}")
+	@PostMapping("/doador/{usuarioId}")
 	public void cadastrarItemDoador(@PathVariable String usuarioId, @RequestBody Item item) {
 		try {
 			item.setTipoUsuario(TipoUsuario.DOADOR);
@@ -43,7 +43,7 @@ public class ItemController {
 		}
 	}
 
-	@PostMapping("/itemreceptor/{usuarioId}")
+	@PostMapping("/receptor/{usuarioId}")
 	public void cadastrarItemReceptor(@PathVariable String usuarioId, @RequestBody Item item) {
 		try {
 			item.setTipoUsuario(TipoUsuario.RECEPTOR);
@@ -60,7 +60,7 @@ public class ItemController {
 		itemService.atualizaItemReceptor(idUsuario, item);
 	}
 
-	@DeleteMapping("{idItem}/usuario/{idUsuario}/")
+	@DeleteMapping("{idItem}/usuario/{idUsuario}")
 	public void deletarItemReceptor(@PathVariable String idUsuario, @PathVariable String idItem) throws Exception {
 		itemService.deletarItemReceptor(idUsuario, idItem);
 	}
