@@ -55,12 +55,12 @@ public class ItemController {
 		}
 	}
 
-	@PutMapping("/itemreceptor/{idUsuario}")
+	@PutMapping("/receptor/{idUsuario}")
 	public void atualizarItemReceptor(@PathVariable String idUsuario, @RequestBody Item item) throws Exception {
 		itemService.atualizaItemReceptor(idUsuario, item);
 	}
 
-	@DeleteMapping("itemreceptor/{idUsuario}/item/{idItem}")
+	@DeleteMapping("{idItem}/usuario/{idUsuario}/")
 	public void deletarItemReceptor(@PathVariable String idUsuario, @PathVariable String idItem) throws Exception {
 		itemService.deletarItemReceptor(idUsuario, idItem);
 	}
@@ -75,12 +75,12 @@ public class ItemController {
 		return this.itemService.getItensSortQuant();
 	}
 
-	@GetMapping("/itensNecessarios")
+	@GetMapping("/necessarios")
 	public List<Item> getItensNecessarios() {
 		return this.itemService.getItensNecessarios();
 	}
 
-	@GetMapping("/encontrar/{id}")
+	@GetMapping("/{id}")
 	public Item findById(@PathVariable String id) {
 		return this.itemService.findById(id);
 	}
@@ -95,7 +95,7 @@ public class ItemController {
 		itemService.removerItemDoacao(id, Id);
 	}
 
-	@PutMapping("/itemdoador/{idUsuario}")
+	@PutMapping("/doador/{idUsuario}")
 	public void atualizarItemDoador(@PathVariable String idUsuario, @RequestBody Item item) throws Exception {
 		itemService.atualizaItemDoador(idUsuario, item);
 	}
