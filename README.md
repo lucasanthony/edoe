@@ -21,7 +21,7 @@
 > * Itens que usuário possui para doação: `GET` `https://edoe.herokuapp.com/usuario/itensdoacao/{idUsuario}`
 > * Atualizar usuário: `PUT` `https://edoe.herokuapp.com/usuario/{idUsuario}`
 > * Remover usuário: `DELETE` `https://edoe.herokuapp.com/usuario/{id}`
-> * Para mais endpoints e mais detalhes [clique aqui](https://docs.google.com/spreadsheets/d/e/2PACX-1vTKBSN7akdgCAOA8svZyORjGkdUTT8DBTTQyQwcgiracPwTSQxMwrrVCpJQToaYlXuAfi5Jw7YVZUo5/pubhtml?gid=0&single=true)
+> * Para mais endpoints e mais detalhes [clique aqui](http://bit.ly/endpointsedoe)
 
 ### Arquitetura
 >O Servidor foi desenvolvido utilizando a linguagem de programação Java, uma linguagem bem consolidada e conhecida além de possuir uma boa documentação. Para desenvolver a API provedora dos serviços com uma certa agilidade, usamos o framework da Spring, o Spring Boot, que é uma ferramenta que facilita bastante a criação de uma API REST voltada para aplicações e sistemas web. O padrão que aderimos é semelhante ao que é usado na parte do cliente, que é o padrão MVC, possuindo divisões do formato de Models, Repositories, Services e Controllers. Usamos uma comunicação com o banco de dados não-relacional MongoDB, devido a escalabilidade horizontal que obtemos com ele, além também de facilitar o formato dos dados enviados ao Cliente, pelo fato de serem inseridos em JSON, conseguindo uma boa performance.
