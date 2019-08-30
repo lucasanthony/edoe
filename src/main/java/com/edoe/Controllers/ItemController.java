@@ -60,7 +60,7 @@ public class ItemController {
 		itemService.atualizaItemReceptor(idUsuario, item);
 	}
 
-	@DeleteMapping("{idItem}/usuario/{idUsuario}")
+	@DeleteMapping("/{idItem}/usuario/{idUsuario}")
 	public void deletarItemReceptor(@PathVariable String idUsuario, @PathVariable String idItem) throws Exception {
 		itemService.deletarItemReceptor(idUsuario, idItem);
 	}
@@ -90,7 +90,7 @@ public class ItemController {
 		return this.itemService.retornaItens();
 	}
 
-	@DeleteMapping("/itemdoador/{id}/item/{Id}")
+	@DeleteMapping("/doador/{id}/item/{Id}")
 	public void deletarItemDoador(@PathVariable String id, @PathVariable String Id) throws Exception {
 		itemService.removerItemDoacao(id, Id);
 	}
