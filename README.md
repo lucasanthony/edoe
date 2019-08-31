@@ -30,5 +30,6 @@
 * [Lucas Anthony](https://github.com/lucasanthony)
 * [Pedro Wanderley](https://github.com/pedrofwanderley)
 
-
-Universidade Federal de Campina Grande, 2019.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/compufcg.png"> 
+</p>
