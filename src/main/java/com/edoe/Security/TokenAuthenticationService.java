@@ -1,4 +1,4 @@
-package com.edoe.Security;
+/*package com.edoe.Security;
 
 import java.util.Collections;
 import java.util.Date;
@@ -48,4 +48,4 @@ public class TokenAuthenticationService {
 		return null;
 	}
 
-}
+}*/

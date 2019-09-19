@@ -1,4 +1,4 @@
-package com.edoe.Security;
+/*package com.edoe.Security;
 
 
 import java.io.IOException;
@@ -26,4 +26,4 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
 		filterChain.doFilter(request, response);
 	}
 
-}
+}*/

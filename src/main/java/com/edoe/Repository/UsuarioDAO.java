@@ -9,5 +9,7 @@ import com.edoe.Model.Usuario;
 public interface UsuarioDAO extends MongoRepository<Usuario, String> {
 	
 	Usuario findUsuarioById(String id);
+
+	Usuario findUsuarioByEmail(String email);
 }
 

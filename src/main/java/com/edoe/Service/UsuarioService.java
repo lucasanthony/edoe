@@ -1,26 +1,43 @@
 package com.edoe.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.edoe.Model.Doador;
 import com.edoe.Model.Item;
+import com.edoe.Model.Role;
 import com.edoe.Model.Usuario;
 import com.edoe.Repository.ItemDAO;
+import com.edoe.Repository.RoleRepository;
 import com.edoe.Repository.UsuarioDAO;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService {
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 	
 	@Autowired
 	private ItemDAO itemDAO;
+	
+	@Autowired
+	private RoleRepository roleRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public void insereUsuario(Usuario usuario) {
 		usuarioDAO.save(usuario);
@@ -35,6 +52,10 @@ public class UsuarioService {
 		//ClasseUsuario classeUser = ClasseUsuario.valueOf(classe);
 		//Usuario doador = new Doador(id, nome, email, celular, classeUser);
 		try {
+		    doador.setPassword(bCryptPasswordEncoder.encode(doador.getPassword()));
+		    doador.setEnabled(true);
+		    Role userRole = roleRepository.findByRole("ADMIN");
+		    doador.setRoles(new HashSet<>(Arrays.asList(userRole)));
 			usuarioDAO.save(doador);
 		} catch (ConstraintViolationException e) {
 		    //DataIsNotValidException is our custom exception
@@ -45,6 +66,9 @@ public class UsuarioService {
 
 	}
 	
+	public Usuario findUserByEmail(String email) {
+	    return usuarioDAO.findUsuarioByEmail(email);
+	}
 	private boolean verificaSeJaExiste(String id) {
 		return usuarioDAO.existsById(id);
 	}
@@ -104,6 +128,31 @@ public class UsuarioService {
 	public List<Item> pesquisaitensDoacao(String idUsuario) {
 		return itemDAO.findItensByIdDoador(idUsuario);
 		
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		 Usuario user = usuarioDAO.findUsuarioByEmail(email);
+		    if(user != null) {
+		        List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
+		        return buildUserForAuthentication(user, authorities);
+		    } else {
+		        throw new UsernameNotFoundException("username not found");
+		    }
+	}
+	
+	private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
+	    Set<GrantedAuthority> roles = new HashSet<>();
+	    userRoles.forEach((role) -> {
+	        roles.add(new SimpleGrantedAuthority(role.getRole()));
+	    });
+
+	    List<GrantedAuthority> grantedAuthorities = new ArrayList<>(roles);
+	    return grantedAuthorities;
+	}
+	
+	private UserDetails buildUserForAuthentication(Usuario user, List<GrantedAuthority> authorities) {
+	    return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
 	}
 
 }

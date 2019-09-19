@@ -1,4 +1,4 @@
-package com.edoe.Security;
+/*package com.edoe.Security;
 
 public class AccountCredentials {
 
@@ -22,3 +22,4 @@ public class AccountCredentials {
 		this.password = password;
 	}
 }
+*/
