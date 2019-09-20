@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.edoe.Model.Item;
@@ -37,7 +38,7 @@ public class UsuarioService implements UserDetailsService {
 	private RoleRepository roleRepository;
 	
 	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private PasswordEncoder bCryptPasswordEncoder;
 
 	public void insereUsuario(Usuario usuario) {
 		usuarioDAO.save(usuario);
