@@ -23,7 +23,7 @@
 >O Servidor foi desenvolvido utilizando a linguagem de programação Java, uma linguagem bem consolidada e conhecida além de possuir uma boa documentação. Para desenvolver a API provedora dos serviços com uma certa agilidade, usamos o framework da Spring, o Spring Boot, que é uma ferramenta que facilita bastante a criação de uma API REST voltada para aplicações e sistemas web. O padrão que aderimos é semelhante ao que é usado na parte do cliente, que é o padrão MVC, possuindo divisões do formato de Models, Repositories, Services e Controllers. Usamos uma comunicação com o banco de dados não-relacional MongoDB, devido a escalabilidade horizontal que obtemos com ele, além também de facilitar o formato dos dados enviados ao Cliente, pelo fato de serem inseridos em JSON, conseguindo uma boa performance.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/DACA_edoe_Diagram.png" height="500" width="390"> 
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/DACA_edoe_Diagram.png" height="400" width="390"> 
 </p>
 
 
