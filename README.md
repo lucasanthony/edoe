@@ -42,7 +42,7 @@ Role: Um set de roles, que seriam o “tipo” do usuário no sistema, esse tipo
 >Referências:(https://www.djamware.com/post/5d3332980707cc65eac46c7b/spring-boot-security-mongodb-angular-8-build-authentication)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/jwt.png" height="450" width="540"> 
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/jwt.png" height="" width=""> 
 </p>
 
 #### Time:
