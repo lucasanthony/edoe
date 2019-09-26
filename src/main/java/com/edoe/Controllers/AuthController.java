@@ -58,7 +58,7 @@ public class AuthController {
 
 	@SuppressWarnings("rawtypes")
 	@PostMapping("/register/doador")
-	public ResponseEntity registerDoador(@RequestBody Usuario user) throws Exception {
+	public ResponseEntity registerDoador(@RequestBody Doador user) throws Exception {
 		Usuario userExists = userService.findUserByEmail(user.getEmail());
 		if (userExists != null) {
 			throw new BadCredentialsException("User with username: " + user.getEmail() + " already exists");
@@ -76,7 +76,7 @@ public class AuthController {
 		if (userExists != null) {
 			throw new BadCredentialsException("User with username: " + user.getEmail() + " already exists");
 		}
-		userService.adicionaDoador(user);
+		userService.adicionaReceptor(user);
 		Map<Object, Object> model = new HashMap<>();
 		model.put("message", "User registered successfully");
 		return ok(model);

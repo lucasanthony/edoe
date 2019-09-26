@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.edoe.Model.Doador;
 import com.edoe.Model.Item;
 import com.edoe.Model.Role;
 import com.edoe.Model.Usuario;
@@ -45,7 +46,7 @@ public class UsuarioService implements UserDetailsService {
 	}
 
 	// FUNCIONANDO MAS O EASY ACCEPT NN TA RECONHECENDO, TESTEI NO POSTMAN
-	public Usuario adicionaDoador(Usuario doador) throws Exception {
+	public Usuario adicionaDoador(Doador doador) throws Exception {
 	
 		if(verificaSeJaExiste(doador.getId()))
 			throw new Exception("Usuario ja existente: " + doador.getId());

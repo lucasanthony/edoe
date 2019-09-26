@@ -37,7 +37,7 @@ public class UsuarioController {
 		return usuarioService.adicionaDoador(doador);
 	}
 	
-	@PostMapping("/doador")
+	@PostMapping("/receptor")
 	public Usuario cadastraReceptor(@RequestBody Receptor receptor) throws Exception {
 		return usuarioService.adicionaReceptor(receptor);
 	}

@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.edoe.Model.Doador;
 import com.edoe.Model.Usuario;
 import com.edoe.Service.UsuarioService;
 
@@ -46,7 +48,7 @@ public class LoginController {
 	    if (bindingResult.hasErrors()) {
 	        modelAndView.setViewName("signup");
 	    } else {
-	        usuarioService.adicionaDoador(user);
+	        usuarioService.adicionaDoador((Doador) user);
 	        modelAndView.addObject("successMessage", "User has been registered successfully");
 	        modelAndView.addObject("user", new Usuario());
 	        modelAndView.setViewName("login");
