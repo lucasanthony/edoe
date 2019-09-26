@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection = "DOADOR")
+@Document(collection = "USUARIO")
 public class Usuario {
 
 	@NotEmpty(message = "O nome não pode ser vazio")
@@ -31,7 +31,7 @@ public class Usuario {
 	@NotEmpty(message = "O celular não pode ser vazio")
 	protected String celular;
 	
-	private String password;
+	protected String password;
 	
 	@DBRef
 	protected Set<Role> roles;

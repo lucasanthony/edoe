@@ -17,13 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edoe.Model.AuthBody;
+import com.edoe.Model.Doador;
+import com.edoe.Model.Receptor;
 import com.edoe.Model.Usuario;
 import com.edoe.Repository.UsuarioDAO;
 import com.edoe.Security.JwtTokenProvider;
 import com.edoe.Service.UsuarioService;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/edoe/auth")
 public class AuthController {
 
 	@Autowired
@@ -55,8 +57,21 @@ public class AuthController {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@PostMapping("/register")
-	public ResponseEntity register(@RequestBody Usuario user) throws Exception {
+	@PostMapping("/register/doador")
+	public ResponseEntity registerDoador(@RequestBody Usuario user) throws Exception {
+		Usuario userExists = userService.findUserByEmail(user.getEmail());
+		if (userExists != null) {
+			throw new BadCredentialsException("User with username: " + user.getEmail() + " already exists");
+		}
+		userService.adicionaDoador(user);
+		Map<Object, Object> model = new HashMap<>();
+		model.put("message", "User registered successfully");
+		return ok(model);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@PostMapping("/register/receptor")
+	public ResponseEntity registerReceptor(@RequestBody Receptor user) throws Exception {
 		Usuario userExists = userService.findUserByEmail(user.getEmail());
 		if (userExists != null) {
 			throw new BadCredentialsException("User with username: " + user.getEmail() + " already exists");

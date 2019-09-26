@@ -36,6 +36,11 @@ public class UsuarioController {
 	public Usuario cadastraDoador(@RequestBody Doador doador) throws Exception {
 		return usuarioService.adicionaDoador(doador);
 	}
+	
+	@PostMapping("/doador")
+	public Usuario cadastraReceptor(@RequestBody Receptor receptor) throws Exception {
+		return usuarioService.adicionaReceptor(receptor);
+	}
 
 	@GetMapping
 	public List<Usuario> pesquisaTodosusuarios() {
@@ -47,7 +52,7 @@ public class UsuarioController {
 		return this.usuarioService.pesquisaitensDoacao(idUsuario);
 	}
 
-	@PostMapping("/receptor")
+	/*@PostMapping("/receptor")
 	public void cadastrarReceptor() throws IOException {
 		Scanner sc = new Scanner(new File(path));
 		String linha = null;
@@ -65,7 +70,7 @@ public class UsuarioController {
 		}
 		sc.close();
 
-	}
+	}*/
 
 	@PutMapping("/{idUsuario}")
 	public Usuario atualizarUsuario(@PathVariable String idUsuario, @RequestBody Usuario usuario) throws Exception {

@@ -67,6 +67,29 @@ public class UsuarioService implements UserDetailsService {
 
 	}
 	
+	public Usuario adicionaReceptor(Usuario receptor) throws Exception {
+		
+		if(verificaSeJaExiste(receptor.getId()))
+			throw new Exception("Usuario ja existente: " + receptor.getId());
+		
+		//ClasseUsuario classeUser = ClasseUsuario.valueOf(classe);
+		//Usuario doador = new Doador(id, nome, email, celular, classeUser);
+		try {
+			receptor.setPassword(bCryptPasswordEncoder.encode(receptor.getPassword()));
+		    receptor.setEnabled(true);
+		    Role userRole = roleRepository.findByRole("ADMIN");
+		    receptor.setRoles(new HashSet<>(Arrays.asList(userRole)));
+			usuarioDAO.save(receptor);
+		} catch (ConstraintViolationException e) {
+		    //DataIsNotValidException is our custom exception
+		    throw new IllegalArgumentException("Data is not valid" + e.getMessage());
+		}
+		
+		return receptor;
+
+	}
+	
+	
 	public Usuario findUserByEmail(String email) {
 	    return usuarioDAO.findUsuarioByEmail(email);
 	}
