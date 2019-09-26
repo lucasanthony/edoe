@@ -38,6 +38,7 @@ Role: Um set de roles, que seriam o “tipo” do usuário no sistema, esse tipo
 >O modelo de segurança escolhido foi o JSON Web Token (jwt) e para implementação do mesmo se faz necessário um mecanismo de geração e validação de tokens, por meio de bibliotecas existentes.
 
 >A geração do token acontece no momento do login do usuário, caso um usuário não cadastrado tente entrar no sistema e acessar alguns dos endpoint  ele receberá um erro, pois não terá a permissão necessária para ter esse acesso. Após o cadastro o usuário está apto a loggar no sistema, após o login ele receberá um token, este que deve estar no headers das requisições feitas pelo usuário, dessa forma, qualquer requisição, de busca por itens, usuários, ou qualquer outro tipo de ação exigem que o usuário esteja loggado, e ainda que este seja um usuário do tipo “ADMIN”, por default todos os usuários cadastrados no sistema são do tipo “ADMIN”, seja esse usuário um receptor ou um doador.
+
 >Referências:(https://www.djamware.com/post/5d3332980707cc65eac46c7b/spring-boot-security-mongodb-angular-8-build-authentication)
 
 <p align="center">
