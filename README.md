@@ -42,6 +42,19 @@ PUT | /usuario/{idUsuario} | |
 - [x] Realize login `POST https://www.edoe.herokuapp.com/edoe/auth/login` para receber um token válido
 - [x] Utilize as rotas em um cliente REST de sua preferência, agora passando o token recebido no header de authorization `Bearer TOKEN`
 
+### Desempenho
+>A estrutura utilizada para melhoramento do desempenho foi uma abstração de memória cache, que apresenta benefícios no tempo de respostas das requisições, torna o sistema mais escalável(menos consultas no banco) e oferece uma economia de disco.
+Os endpoint escolhidos para serem voltados a essa memória temporária foram os métodos HTTP do tipo GET, isso porque os demais precisariam efetivamente de um acesso direto ao banco, pois resultam em modificações no mesmo.
+
+Abaixo seguem duas imagens apresentando o ganho de desempenho de duas requisições, a primeira requisição não utiliza cache, e a segunda utiliza o mecanismo  
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/requisicao_1.png"> 
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/requisicao_2.png"> 
+</p>
+
+Observando as imagens pode-se ver uma melhora de 80% aproximadamente no tempo de resposta, confirmando a eficácia da utilização de cache nesses tipos de requisições HTTP.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/jwt.png"> 
