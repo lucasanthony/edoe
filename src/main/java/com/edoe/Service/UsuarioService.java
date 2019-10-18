@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +28,7 @@ import com.edoe.Repository.RoleRepository;
 import com.edoe.Repository.UsuarioDAO;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService implements UserDetailsService{
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
@@ -110,6 +111,7 @@ public class UsuarioService implements UserDetailsService {
 	}
 	
 	//OK
+	@Cacheable("usuarios")
 	public List<Usuario> pesquisaTodosUsuarios() {
 		return usuarioDAO.findAll();
 	}
