@@ -48,10 +48,10 @@ Os endpoint escolhidos para serem voltados a essa memória temporária foram os 
 
 Abaixo seguem duas imagens apresentando o ganho de desempenho de duas requisições, a primeira requisição não utiliza cache, e a segunda utiliza o mecanismo  
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/requisicao_1.png"> 
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/Milestone_3/artefatos/requisicao_1.png"> 
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/requisicao_2.png"> 
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/Milestone_3/artefatos/requisicao_2.png"> 
 </p>
 
 Observando as imagens pode-se ver uma melhora de 80% aproximadamente no tempo de resposta, confirmando a eficácia da utilização de cache nesses tipos de requisições HTTP.
