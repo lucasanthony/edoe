@@ -47,9 +47,13 @@ PUT | /usuario/{idUsuario} | |
 Os endpoint escolhidos para serem voltados a essa memória temporária foram os métodos HTTP do tipo GET, isso porque os demais precisariam efetivamente de um acesso direto ao banco, pois resultam em modificações no mesmo.
 
 Abaixo seguem duas imagens apresentando o ganho de desempenho de duas requisições, a primeira requisição não utiliza cache, e a segunda utiliza o mecanismo  
+
+* Sem CACHE
 <p align="center">
   <img src="https://raw.githubusercontent.com/lucasanthony/edoe/Milestone_3/artefatos/requisicao_1.png"> 
 </p>
+
+* Com CACHE
 <p align="center">
   <img src="https://raw.githubusercontent.com/lucasanthony/edoe/Milestone_3/artefatos/requisicao_2.png"> 
 </p>
