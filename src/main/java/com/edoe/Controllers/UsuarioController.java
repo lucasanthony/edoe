@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +42,7 @@ public class UsuarioController {
 	public Usuario cadastraReceptor(@RequestBody Receptor receptor) throws Exception {
 		return usuarioService.adicionaReceptor(receptor);
 	}
-
+	
 	@GetMapping
 	public List<Usuario> pesquisaTodosusuarios() {
 		return this.usuarioService.pesquisaTodosUsuarios();
