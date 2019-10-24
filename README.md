@@ -60,6 +60,12 @@ Abaixo seguem duas imagens apresentando o ganho de desempenho de duas requisiç�
 
 Observando as imagens pode-se ver uma melhora de 80% aproximadamente no tempo de resposta, confirmando a eficácia da utilização de cache nesses tipos de requisições HTTP.
 
+### Testes de desempenho
+
+- [Endpoint que utiliza cache](https://htmlpreview.github.io/?https://github.com/lucasanthony/edoe/blob/master/Jmeter/usuario/busca-%40cache.html)
+
+- [Endpoint sem cache](https://htmlpreview.github.io/?https://github.com/lucasanthony/edoe/blob/master/Jmeter/usuarioNome/buscar-por-nome.html)
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/jwt.png"> 
 </p>
