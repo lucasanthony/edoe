@@ -112,7 +112,7 @@ public class UsuarioService implements UserDetailsService{
 	
 	//OK
 	@Cacheable("usuarios")
-	public List<Usuario> pesquisaTodosUsuarios() throws InterruptedException {
+	public List<Usuario> pesquisaTodosUsuarios() {
 		//Thread.sleep(5000);
 		return usuarioDAO.findAll();
 	}
