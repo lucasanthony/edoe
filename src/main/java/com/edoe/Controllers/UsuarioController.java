@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,17 +35,19 @@ public class UsuarioController {
 	private String path = "/home/lucasafo/novosReceptores.csv";
 
 	@PostMapping("/doador")
+	@CacheEvict(value="usuarios", allEntries=true)
 	public Usuario cadastraDoador(@RequestBody Doador doador) throws Exception {
 		return usuarioService.adicionaDoador(doador);
 	}
 	
 	@PostMapping("/receptor")
+	@CacheEvict(value="usuarios", allEntries=true)
 	public Usuario cadastraReceptor(@RequestBody Receptor receptor) throws Exception {
 		return usuarioService.adicionaReceptor(receptor);
 	}
 	
 	@GetMapping
-	public List<Usuario> pesquisaTodosusuarios() {
+	public List<Usuario> pesquisaTodosusuarios() throws InterruptedException {
 		return this.usuarioService.pesquisaTodosUsuarios();
 	}
 	
