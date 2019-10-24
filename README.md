@@ -42,15 +42,33 @@ PUT | /usuario/{idUsuario} | |
 - [x] Realize login `POST https://www.edoe.herokuapp.com/edoe/auth/login` para receber um token válido
 - [x] Utilize as rotas em um cliente REST de sua preferência, agora passando o token recebido no header de authorization `Bearer TOKEN`
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/jwt.png"> 
+</p>
+
 ### Desempenho
 >A estrutura utilizada para melhoramento do desempenho foi uma abstração de memória cache, que apresenta benefícios no tempo de respostas das requisições, torna o sistema mais escalável(menos consultas no banco) e oferece uma economia de disco.
 Os endpoint escolhidos para serem voltados a essa memória temporária foram os métodos HTTP do tipo GET, isso porque os demais precisariam efetivamente de um acesso direto ao banco, pois resultam em modificações no mesmo.
 
-* Requisição que usa CACHE
+* Comparação de resultados, CACHE vs SEM CACHE
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/jwt.png"> 
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/com-cache-barra.png"> 
 </p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/sem-cache-barra.png"> 
+</p>
+
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/com-cache-linha.png"> 
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/sem-cache-linha.png"> 
+</p>
+
 
 
 Observando as imagens pode-se ver uma melhora de 80% aproximadamente no tempo de resposta, confirmando a eficácia da utilização de cache nesses tipos de requisições HTTP.
@@ -61,9 +79,6 @@ Observando as imagens pode-se ver uma melhora de 80% aproximadamente no tempo de
 
 - [Endpoint sem cache](https://htmlpreview.github.io/?https://github.com/lucasanthony/edoe/blob/master/Jmeter/usuarioNome/buscar-por-nome.html)
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/jwt.png"> 
-</p>
 
 #### Time:
 * [Lucas Anthony](https://github.com/lucasanthony)
