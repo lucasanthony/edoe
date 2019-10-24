@@ -47,7 +47,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping
-	public List<Usuario> pesquisaTodosusuarios() {
+	public List<Usuario> pesquisaTodosusuarios() throws InterruptedException {
 		return this.usuarioService.pesquisaTodosUsuarios();
 	}
 	
