@@ -58,7 +58,9 @@ public class UsuarioService implements UserDetailsService{
 		    doador.setPassword(bCryptPasswordEncoder.encode(doador.getPassword()));
 		    doador.setEnabled(true);
 		    Role userRole = roleRepository.findByRole("ADMIN");
+		    Role doadorRole = roleRepository.findByRole("DOADOR");
 		    doador.setRoles(new HashSet<>(Arrays.asList(userRole)));
+		    doador.getRoles().add(doadorRole);
 			usuarioDAO.save(doador);
 		} catch (ConstraintViolationException e) {
 		    //DataIsNotValidException is our custom exception
@@ -80,7 +82,9 @@ public class UsuarioService implements UserDetailsService{
 			receptor.setPassword(bCryptPasswordEncoder.encode(receptor.getPassword()));
 		    receptor.setEnabled(true);
 		    Role userRole = roleRepository.findByRole("ADMIN");
+		    Role receptorRole = roleRepository.findByRole("RECEPTOR");
 		    receptor.setRoles(new HashSet<>(Arrays.asList(userRole)));
+		    receptor.getRoles().add(receptorRole);
 			usuarioDAO.save(receptor);
 		} catch (ConstraintViolationException e) {
 		    //DataIsNotValidException is our custom exception
@@ -112,7 +116,8 @@ public class UsuarioService implements UserDetailsService{
 	
 	//OK
 	@Cacheable("usuarios")
-	public List<Usuario> pesquisaTodosUsuarios() {
+	public List<Usuario> pesquisaTodosUsuarios() throws InterruptedException {
+		Thread.sleep(5000);
 		return usuarioDAO.findAll();
 	}
 

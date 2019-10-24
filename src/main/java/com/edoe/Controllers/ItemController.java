@@ -20,6 +20,7 @@ import com.edoe.Model.Matching;
 import com.edoe.Model.TipoUsuario;
 import com.edoe.Service.DescritorItemService;
 import com.edoe.Service.ItemService;
+import com.edoe.Service.UsuarioService;
 
 @RestController
 @RequestMapping({ "/item" })
