@@ -70,8 +70,7 @@ Os endpoint escolhidos para serem voltados a essa memória temporária foram os 
 </p>
 
 
-
-Observando as imagens pode-se ver uma melhora de 80% aproximadamente no tempo de resposta, confirmando a eficácia da utilização de cache nesses tipos de requisições HTTP.
+Em testes no Postman, observamos uma melhora de 80% aproximadamente no tempo de resposta, confirmando a eficácia da utilização de cache nesses tipos de requisições HTTP.
 
 ### Testes de desempenho
 
