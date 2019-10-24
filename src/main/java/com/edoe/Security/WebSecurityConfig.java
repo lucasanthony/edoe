@@ -43,7 +43,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/edoe/auth/login").permitAll().antMatchers("/edoe/auth/register/doador").permitAll()
 				.antMatchers("/edoe/auth/register/receptor").permitAll()
 				.antMatchers("/usuario/**").hasAuthority("ADMIN").anyRequest().authenticated()
-				.antMatchers("/item/**").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
+				.antMatchers("/item/doador/**").not().hasAuthority("RECEPTOR").anyRequest().authenticated()
+				.antMatchers("/item/receptor/**").not().hasAuthority("DOADOR").anyRequest().authenticated()
+				//.antMatchers("/item/doador/**").hasAuthority("DOADOR").anyRequest().authenticated()
+				//.antMatchers("/item/**").hasAuthority("ADMIN").anyRequest().authenticated()
+				.and().csrf()
 				.disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
 				.apply(new JwtConfigurer(jwtTokenProvider));
 	}
