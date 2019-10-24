@@ -69,9 +69,9 @@ Os endpoint escolhidos para serem voltados a essa memória temporária foram os 
   <img src="https://raw.githubusercontent.com/lucasanthony/edoe/master/artefatos/sem-cache-linha.png"> 
 </p>
 
-O fluxo de execução das requisições que utilizam cache se caracterizam por um armazenamento temporário de respostas de requisições, o que diminui a quantidade de vezes que o banco é consultado, diminuindo assim o tempo de resposta.
-Para testar, utilizamos uma função para paralizar a execução da thread responável pela requisição, assim, quando a cache entrava em prática, essa pausa era ignorada, pois a requisição já buscava a resposta na memória temporária, os resultados obtidos foram expostos nos gráficos acima.
-Em testes no Postman, observamos uma melhora de 80% aproximadamente no tempo de resposta, confirmando a eficácia da utilização de cache nesses tipos de requisições HTTP.
+  O fluxo de execução das requisições que utilizam cache se caracterizam por um armazenamento temporário de respostas de requisições, o que diminui a quantidade de vezes que o banco é consultado, diminuindo assim o tempo de resposta.
+  Para testar, utilizamos uma função para paralizar a execução da thread responável pela requisição, assim, quando a cache entrava em prática, essa pausa era ignorada, pois a requisição já buscava a resposta na memória temporária, os resultados obtidos foram expostos nos gráficos acima.
+  Em testes no Postman, observamos uma melhora de 80% aproximadamente no tempo de resposta, confirmando a eficácia da utilização de cache nesses tipos de requisições HTTP.
 
 ### Testes de desempenho
 
